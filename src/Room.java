@@ -1,4 +1,5 @@
 public class Room{
+    //Field variables
     int roomId;
     String roomName, roomDesc, roomExits;
     //Items[] roomInventory; //uncomment once the Items class is made
@@ -7,7 +8,9 @@ public class Room{
     Room(int roomId){
 
     }
-    setRoomId(int id){
+
+    public void setRoomId(int id){
 
     }
+
 }
