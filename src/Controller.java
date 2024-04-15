@@ -43,10 +43,14 @@ public class Controller {
                 break;
 
             //Puzzle Frs
-            case
+            case "hint":
+                player.hint();
+                break;
 
             //Monster Frs
-            case
+            case "engage":
+                player.engage();
+                break;
 
             default:
                 view.displayMessage("Invalid command. Type 'help' for available commands.");
