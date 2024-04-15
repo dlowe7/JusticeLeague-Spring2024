@@ -4,7 +4,7 @@ public class Player
     //Items[] inventory;
 
     //constructor to be uncommented once the items class is done
-    
+
     Player(int currentRoomID, int startingRoomId, int maxHealth, int currentHealth,
            int level, int baseDamage, Items[] inventory)
     {

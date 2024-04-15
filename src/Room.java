@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+
 public class Room{
     //Field variables
     int roomId;
     String roomName, roomDesc, roomExits;
-    Items[] roomInventory;
+    ArrayList<Items> roomInventory;
 
     //unfinished constructor
-    Room(int roomId, String roomName, String roomDesc, String roomExits, Items[] roomInventory){
+    Room(int roomId, String roomName, String roomDesc, String roomExits, ArrayList<Items> roomInventory){
         this.roomId = roomId;
         this.roomName = roomName;
         this.roomDesc = roomDesc;
