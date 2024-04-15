@@ -4,7 +4,7 @@ public class Player
     //Items[] inventory;
 
     //constructor to be uncommented once the items class is done
-    /*
+    
     Player(int currentRoomID, int startingRoomId, int maxHealth, int currentHealth,
            int level, int baseDamage, Items[] inventory)
     {
@@ -16,7 +16,7 @@ public class Player
         this.baseDamage = baseDamage;
         this.inventory = inventory;
     }
-     */
+
 
     public int getCurrentRoomId()
     {
@@ -88,8 +88,7 @@ public class Player
 
     }
 
-    //needs item class to be uncommented
-    /*
+
     public void pickup(Item i)
     {
 
@@ -119,7 +118,7 @@ public class Player
     {
 
     }
-    */
+
 
 
     public void hint()
