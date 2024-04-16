@@ -1,7 +1,7 @@
 public class Player
 {
     int currentRoomId, startingRoomId, maxHealth, currentHealth, level, baseDamage;
-    //Items[] inventory;
+    Items[] inventory;
 
     //constructor to be uncommented once the items class is done
 
@@ -89,12 +89,12 @@ public class Player
     }
 
 
-    public void pickup(Item i)
+    public void pickup(Items i)
     {
 
     }
 
-    public void drop(Item i)
+    public void drop(Items i)
     {
 
     }

@@ -3,6 +3,7 @@ public class Controller {
     private void parseInput(String input) {
         String[] inputParts = input.split(" ");
         String command = inputParts[0];
+        Player player;
 
         switch (command) {
 

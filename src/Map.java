@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-Public class Map
+public class Map
 {
     //Field variables
     Room[] allRooms;
     Items[] allItems;
-    Puzzles[] allPuzzles;
+    Puzzle[] allPuzzles;
     Monster[] allMonsters;
     Player allPlayerStats;
 
