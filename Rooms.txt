@@ -1,8 +1,7 @@
 R1
 Dungeon Entrance
 An old, dark, and dusty room with little of interest.
------
-north R19
-east R15
-west R20
------
+R19
+R15
+R20
+0
