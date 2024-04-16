@@ -2,16 +2,22 @@ import java.util.ArrayList;
 
 public class Room{
     //Field variables
-    int roomId;
-    String roomName, roomDesc, roomExits;
+    String roomId;
+    String roomName, roomDesc;
+    //This creates a map
+    String northExit, eastExit, westExit, southExit;
     ArrayList<Items> roomInventory;
 
     //unfinished constructor
-    Room(int roomId, String roomName, String roomDesc, String roomExits, ArrayList<Items> roomInventory){
+    Room(String roomId, String roomName, String roomDesc, String northExit, String eastExit, 
+    		String westExit, String southExit, ArrayList<Items> roomInventory){
         this.roomId = roomId;
         this.roomName = roomName;
         this.roomDesc = roomDesc;
-        this.roomExits = roomExits;
+        this.northExit = northExit;
+        this.eastExit = eastExit;
+        this.westExit = westExit;
+        this.southExit = southExit;
         this.roomInventory = roomInventory;
     }
 

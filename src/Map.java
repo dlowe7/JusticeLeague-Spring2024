@@ -18,7 +18,8 @@ public class Map
     //be part of the readRooms method
     public void readRooms(String roomFileName)
     {
-
+    	fileReader = new Scanner(roomFileName);
+    	String roomId = fileReader.next();
     }
 
     //this method parses data for the items
