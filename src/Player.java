@@ -84,7 +84,7 @@ public class Player
 
     public void move(String command)
     {
-    	
+        //Player input: "move north" and "move n"
     }
 
     public void accessInventory()
@@ -103,7 +103,7 @@ public class Player
     //might have to scrap
     public void accessStatistics()
     {
-
+        //View directions moved in, rooms visited, items acquired, puzzles solved, and monsters fought
     }
 
 

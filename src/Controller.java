@@ -31,10 +31,10 @@ public class Controller {
                 player.drop(itemName);
                 break;
             case "use":
-                player.use(itemName);
+                player.useDamagingItem(itemName);
                 break;
             case "consume":
-                player.consume(itemName);
+                player.useHealingItem(itemName);
                 break;
             case "equip":
                 player.equip(itemName);
