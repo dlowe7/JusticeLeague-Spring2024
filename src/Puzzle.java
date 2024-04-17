@@ -7,6 +7,8 @@ public class Puzzle
 		private int attempts;
 		private boolean isSolved;
 		private int hintsGiven;
+		private boolean rewardsPuzzle; //one of the puzzle rewards is unlocking a room while the rest give items.
+		private String itemReward; //This will be the name of the item that will be given.
 
 		// Constructor
 		public Puzzle(String id, String type, String question, String answer) 
@@ -17,8 +19,10 @@ public class Puzzle
 				this.answer = answer;
 				this.attempts = 4; // Default number of attempts
 				this.isSolved = false;
-				this.hintsGiven = 0; //problem with this is that the # of attempts are for the whole game, not per puzzle
+				this.hintsGiven = 0; //problem with this is that the # of hints are for the whole game, not per puzzle
 			}
+		
+		//Some of these methods should be in the player class, if not all.
 
 		// Method to return puzzle question for examination
 		public String examine() 
@@ -33,6 +37,8 @@ public class Puzzle
 					}
 			}
 
+		//Important: the method should also give an item to the player when solved,
+		//or unlock a room if prompted (This part can be worked on later).
 		// Method to attempt to solve the puzzle, returns result as a string
 		public String solve(String playerInput) 
 			{

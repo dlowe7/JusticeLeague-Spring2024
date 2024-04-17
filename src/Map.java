@@ -98,7 +98,7 @@ public class Map
     	    level = fileReader.nextInt();
     	    baseDamage = fileReader.nextInt();
     	    exp = fileReader.nextInt();
-    	    Player player = new Player(startingRoomId, maxHealth, currentHealth, level, baseDamage, exp);
+    	    allPlayerStats = new Player(startingRoomId, maxHealth, currentHealth, level, baseDamage, exp);
     	}
     }
 
