@@ -43,15 +43,28 @@ public class Controller {
                 player.unequip();
                 break;
 
+            //Multiple examine methods, must combine or differentiate commands
+            case "examine":
+                item.examine();
+                break;
+
             //Puzzle Frs
             case "hint":
                 player.hint();
+                break;
+            case "solve":
+                puzzle.solve();
                 break;
 
             //Monster Frs
             case "engage":
                 player.engage();
                 break;
+            case "ignore":
+                player.ignore();
+                break;
+            case "attack":
+                player.attack();
 
             default:
                 view.displayMessage("Invalid command. Type 'help' for available commands.");
