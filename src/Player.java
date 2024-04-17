@@ -70,26 +70,37 @@ public class Player
         return baseDamage;
     }
 
+    //hard coded for time's sake
     public void levelUp()
     {
-
+    	if(exp >= expRequired) {
+    		maxHealth += healthIncrease;
+    		currentHealth += healthIncrease;
+    		baseDamage += damageIncrease;
+    		expRequired += 300;
+    		level += 1;
+    	}
     }
 
     public void move(String command)
     {
-
+    	
     }
 
     public void accessInventory()
     {
-
+    	for(int i = 0; i <= inventory.size(); i++) {
+    		System.out.println(inventory.get(i).getName()); //Will change for the view method later
+    	}
     }
-
+    
+    //Might have to scrap
     public void accessMap()
     {
 
     }
-
+    
+    //might have to scrap
     public void accessStatistics()
     {
 
