@@ -10,5 +10,6 @@ public class Main
         Map game = new Map();
         game.readRooms(new File("Rooms.txt"));
         game.readMonster(new File("Monsters.txt"));
+        game.readPlayerStats(new File("Player.txt"));
     }
 }

@@ -1,29 +1,36 @@
+import java.util.ArrayList;
+
 public class Player
 {
-    int currentRoomId, startingRoomId, maxHealth, currentHealth, level, baseDamage;
-    Items[] inventory;
+	String currentRoomId, startingRoomId;
+    int maxHealth, currentHealth, level, baseDamage, exp;
+    ArrayList<Items> inventory = new ArrayList<Items>();
+    
+    //variables for level ups:
+    int healthIncrease = 10, damageIncrease = 3, expRequired = 300;
 
     //constructor to be uncommented once the items class is done
 
-    Player(int currentRoomID, int startingRoomId, int maxHealth, int currentHealth,
-           int level, int baseDamage, Items[] inventory)
+    Player(String startingRoomId, int maxHealth, int currentHealth,
+           int level, int baseDamage, int exp)
     {
-        this.currentRoomId = currentRoomId;
+        this.currentRoomId = startingRoomId;
         this.startingRoomId = startingRoomId;
         this.maxHealth = maxHealth;
         this.currentHealth = currentHealth;
         this.level = level;
         this.baseDamage = baseDamage;
-        this.inventory = inventory;
+        this.exp = exp;
+        //this.inventory = inventory; may add later
     }
 
 
-    public int getCurrentRoomId()
+    public String getCurrentRoomId()
     {
         return  currentRoomId;
     }
 
-    public void setCurrentRoomId(int id)
+    public void setCurrentRoomId(String id)
     {
         currentRoomId = id;
     }

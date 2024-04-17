@@ -74,9 +74,31 @@ public class Map
     	    exp = fileReader.nextInt();
     	    hp = fileReader.nextInt();
     	    attack = fileReader.nextInt();
-    	    //fileReader.next();//This line is to get rid of the buffer
+    	    //fileReader.next();//This line is to get rid of the buffer... or so I thought, but it might be needed once there is more data
     	    
     	    allMonsters.add(new Monster(ID, name, description, abilities, location, exp, hp, attack));
+    	}
+    }
+    
+    //This is to parse player information
+    public void readPlayerStats(File playerStats) {
+    	try {
+			fileReader = new Scanner(playerStats);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	while(fileReader.hasNext()) {
+    		String startingRoomId;
+    		int maxHealth, currentHealth, level, baseDamage, exp;
+    	    //Items[] inventory; will add later
+    	    startingRoomId = fileReader.nextLine();
+    	    maxHealth = fileReader.nextInt();
+    	    currentHealth = fileReader.nextInt();
+    	    level = fileReader.nextInt();
+    	    baseDamage = fileReader.nextInt();
+    	    exp = fileReader.nextInt();
+    	    Player player = new Player(startingRoomId, maxHealth, currentHealth, level, baseDamage, exp);
     	}
     }
 

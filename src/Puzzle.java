@@ -3,19 +3,21 @@ public class Puzzle
 		private String puzzleID;
 		private String question;
 		private String answer;
+		private String type; //This is needed for the requirements
 		private int attempts;
 		private boolean isSolved;
 		private int hintsGiven;
 
 		// Constructor
-		public Puzzle(String id, String question, String answer) 
+		public Puzzle(String id, String type, String question, String answer) 
 			{
 				this.puzzleID = id;
+				this.type = type;
 				this.question = question;
 				this.answer = answer;
 				this.attempts = 4; // Default number of attempts
 				this.isSolved = false;
-				this.hintsGiven = 0;
+				this.hintsGiven = 0; //problem with this is that the # of attempts are for the whole game, not per puzzle
 			}
 
 		// Method to return puzzle question for examination
