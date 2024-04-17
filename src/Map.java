@@ -7,9 +7,9 @@ public class Map
 {
     //Field variables
     ArrayList<Room> allRooms = new ArrayList<Room>();
-    Items[] allItems;
-    Puzzle[] allPuzzles;
-    Monster[] allMonsters;
+    ArrayList<Items> allItems = new ArrayList<Items>();
+    ArrayList<Puzzle> allPuzzles = new ArrayList<Puzzle>();
+    ArrayList<Monster> allMonsters = new ArrayList<Monster>();
     Player allPlayerStats;
 
     Scanner fileReader;
@@ -55,9 +55,29 @@ public class Map
     }
 
     //this method parses data for the monsters
-    public void readMonster(String mosterFileName)
+    public void readMonster(File monsterFileName)
     {
-
+    	try {
+			fileReader = new Scanner(monsterFileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	while(fileReader.hasNext()) {
+    		String ID, name, description, abilities, location;
+    	    int exp, hp, attack;
+    	    ID = fileReader.nextLine();
+    	    name = fileReader.nextLine();
+    	    description = fileReader.nextLine();
+    	    abilities = fileReader.nextLine();
+    	    location = fileReader.nextLine();
+    	    exp = fileReader.nextInt();
+    	    hp = fileReader.nextInt();
+    	    attack = fileReader.nextInt();
+    	    //fileReader.next();//This line is to get rid of the buffer
+    	    
+    	    allMonsters.add(new Monster(ID, name, description, abilities, location, exp, hp, attack));
+    	}
     }
 
     //All of the below methods will be uncommented out

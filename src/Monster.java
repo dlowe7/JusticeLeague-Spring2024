@@ -1,11 +1,11 @@
 public class Monster
 {
-    String ID, name, description, abilities;
-    int location, exp, hp, attack;
+    String ID, name, description, abilities, location;
+    int exp, hp, attack;
 
     //Constructer
     Monster(String ID, String name, String description, String abilities,
-            int location, int exp, int hp, int attack)
+            String location, int exp, int hp, int attack)
     {
         this.ID = ID;
         this.name = name;

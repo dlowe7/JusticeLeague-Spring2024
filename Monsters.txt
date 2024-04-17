@@ -1,0 +1,8 @@
+M1
+Zaptron
+An uncanny foe for one who is afraid of a little SHOCK!
+The monster zaps you for
+R7
+80
+80
+25

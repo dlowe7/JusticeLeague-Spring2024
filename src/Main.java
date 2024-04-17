@@ -9,5 +9,6 @@ public class Main
         System.out.println("Hello world");
         Map game = new Map();
         game.readRooms(new File("Rooms.txt"));
+        game.readMonster(new File("Monsters.txt"));
     }
 }
