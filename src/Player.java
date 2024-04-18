@@ -114,6 +114,7 @@ public class Player
 
     public void drop(Items i)
     {
+        //Still need to add dropped item into the room
         List<Item> itemsToRemove = new ArrayList<>();
         for (Item item : inventory) {
             if (item.getName().equalsIgnoreCase(i)) {
@@ -126,14 +127,33 @@ public class Player
         }
     }
 
-    public void useHealingItem(Items i)
+    public void useHealingItem(Items i) //Consume potions
     {
-
+        for (Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(i) && item.isConsumable()) {
+                inventory.remove(item);
+                //Health potion fully heals player
+                //Damage potion doubles player attack for one fight
+                System.out.println("Consumed " + i);
+            }
+        }
+        if (!item.isComsumable) {
+            System.out.println("Item cannot be consumed");
+        }
     }
 
-    public void useDamagingItem(Items i)
+    public void useDamagingItem(Items i) //Use items
     {
-
+        for (Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(i) && item.isUsable()) {
+                inventory.remove(item);
+                //Items with different uses
+                System.out.println("Used " + i);
+            }
+        }
+        if (!item.isUsable) {
+            System.out.println("Item cannot be used");
+        }
     }
 
     public void equip(Items i)
