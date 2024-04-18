@@ -82,7 +82,7 @@ public class Player
     	}
     }
 
-    public void move(String command)
+    public void move(String direction)
     {
         //Player input: "move north" and "move n"
     }
@@ -114,7 +114,16 @@ public class Player
 
     public void drop(Items i)
     {
-
+        List<Item> itemsToRemove = new ArrayList<>();
+        for (Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(i)) {
+                itemsToRemove.add(item);
+            }
+        }
+        inventory.removeAll(itemsToRemove);
+        if (itemsToRemove.isEmpty()) {
+            System.out.println("Item not found");
+        }
     }
 
     public void useHealingItem(Items i)

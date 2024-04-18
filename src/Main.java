@@ -11,5 +11,6 @@ public class Main
         game.readRooms(new File("Rooms.txt"));
         game.readMonster(new File("Monsters.txt"));
         game.readPlayerStats(new File("Player.txt"));
+        game.readItems(new File("Items.txt"))
     }
 }
