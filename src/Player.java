@@ -132,7 +132,7 @@ public class Player
         for (Item item : inventory) {
             if (item.getName().equalsIgnoreCase(i) && item.isConsumable()) {
                 inventory.remove(item);
-                //Health potion fully heals player
+                //Health potion fully heals player - get max health
                 //Damage potion doubles player attack for one fight
                 System.out.println("Consumed " + i);
             }
