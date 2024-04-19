@@ -1,5 +1,10 @@
 public class Controller {
 
+    public static final String BOLD = "\u001B[1m";
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+
     private void parseInput(String input) {
         String[] inputParts = input.split(" ");
         String command = inputParts[0];
@@ -69,5 +74,22 @@ public class Controller {
             default:
                 view.displayMessage("Invalid command. Type 'help' for available commands.");
         }
+    }
+
+    private void displayHelp() {
+        view.displayMessage("Available Commands:");
+        view.displayMessage("Player:");
+        view.displayMessage("- Move direction-name: Move to different rooms");
+        view.displayMessage("- Map: Access the game map");
+        view.displayMessage("- Statistics: View player statistics");
+        view.displayMessage("- Inventory: View player inventory");
+        //Save, Load, Exit
+        view.displayMessage("Items:");
+        view.displayMessage("- Pickup item-name: Pick up items");
+        view.displayMessage("- Drop item-name: Drop items");
+        view.displayMessage("- Use item-name: Use items");
+        view.displayMessage("- Consume item-name: Consume items");
+        view.displayMessage("- Equip item-name: Equip items");
+        view.displayMessage("- Unequip: Unequip items");
     }
 }
