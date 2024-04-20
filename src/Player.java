@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Player
 {
@@ -115,16 +114,17 @@ public class Player
 
     public void drop(Items i, Room currentRoom)
     {
-        List<Item> itemsToRemove = new ArrayList<>();
+        boolean itemFound = false;
         for (Item currentItem : inventory) {
             if (currentItem.getName().equalsIgnoreCase(i.getName())) {
                 itemsToRemove.add(currentItem);
                 currentRoom.addItem(i);
+                itemFound = true;
                 System.out.println("Dropped " + i.getName());
+                break;
             }
         }
-        inventory.removeAll(itemsToRemove);
-        if (itemsToRemove.isEmpty()) {
+        if (!itemFound) {
             System.out.println("Item not found");
         }
     }
