@@ -114,12 +114,11 @@ public class Player
 
     public void drop(Items i, Room currentRoom)
     {
-        boolean itemFound = false;
-        for (Item currentItem : inventory) {
+        List<Items> itemsToRemove = new ArrayList<>();
+        for (Items currentItem : inventory) {
             if (currentItem.getName().equalsIgnoreCase(i.getName())) {
                 itemsToRemove.add(currentItem);
                 currentRoom.addItem(i);
-                itemFound = true;
                 System.out.println("Dropped " + i.getName());
                 break;
             }
@@ -127,11 +126,12 @@ public class Player
         if (!itemFound) {
             System.out.println("Item not found");
         }
+        inventory.removeAll(itemsToRemove);
     }
 
     public void useHealingItem(Items i) //Consume healing potions
     {
-        for (Item currentItem : inventory) {
+        for (Items currentItem : inventory) {
             if (currentItem.getName().equalsIgnoreCase(i) && currentItem.isConsumable()) {
                 int healthIncrease = ((Consume) currentItem).getHealthIncrease();
                 currentHealth += healthIncrease
@@ -146,7 +146,7 @@ public class Player
 
     public void useDamagingItem(Items i) //Use damage potion?
     {
-        for (Item currentItem : inventory) {
+        for (Items currentItem : inventory) {
             if (currentItem.getName().equalsIgnoreCase(i) && currentItem.isUsable()) {
                 int damageIncrease = ((Equipment) currentItem).getAttackIncrease();
                 // Deal damage to monster
