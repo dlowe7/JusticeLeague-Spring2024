@@ -5,3 +5,136 @@ R19
 R15
 R20
 0
+R2
+Feline Lair
+This chamber is filled with felines and carved statues. glowing eyes peer from darkness revealing the feline stalker
+R5
+R17
+R18
+R8
+R3
+Shadowy Ambush Den
+Entering this den has flickering torches that are needed to fend off the darkness to fend against the lurking enemy.. The corners would absorb the light creating pools of blackness
+R11
+R9
+R4
+0
+R4
+Vibrant Chamber
+This chamber has a eerie glow emanating from a mysterious crystal in the center. wall are very vibrant with powerful energies.
+R12
+R3
+0
+0
+R5
+Swordsman Arena
+Stepping into the room, you're in a circular arena with a sand covered floor. The room has shattered weapons and torn banners. There appears a lone figure in the center in battle with worn armor. The walls are filled with trophies and warnings of swordsman victories.
+R14
+0
+0
+R2
+R6
+Smuggler Stash
+This room is filled with glimmering stolen treasures. shelves are lined up with trinkets. with a lone figure eyes scanning the room for the next prize
+R7
+R10
+R9
+R15
+R7
+Volt Chamber
+Entering the chamber is filled with a massive energy core that casts an eerie glow. Metal structures are scattered throughout the room creating the room in danger
+0
+R13
+R8
+R6
+R8
+Resonance Chamber
+enter this room with a floor filled with images of footsteps leading to a hourglass center piece. answer the riddle as the hourglass starts to escape the room.
+R2
+R7
+R11
+R9
+R9
+Enchanted Library
+This room is a realm where ancient books and scrolls are shelves on bookcases. dimmed with candles flickering. riddles will be between the bookshelves and in between books challenging you to a riddle.
+R8
+R6
+R3
+R19
+R10
+Twisted Carnival Game
+This room is a twisted carnival room with carnival attractions and dark cursed games with a twisted twist. 
+0
+0
+R6
+0
+R11
+Enchanted Puzzle Garden
+this room is a magical realm with enchanted puzzles intertwined with the garden mazes. vibrant flowers and thorns surround the player and intricate puzzles are woven into the garden's design. 
+R18
+R8
+0
+R3
+R12
+Serpent Den
+in this room the landscape is filled with towering sand dunes that are oppressed with heat with serpent tracks in the sand hints the presence of snake lurking
+R16
+0
+0
+R4
+R13
+Treasure Chamber
+This room is a collecting room in the smuggler stash, filled with glittering treasures and chest. player will collect valuable gems, enchanted jewelry, and coins that can be traded for powerful weapons. 
+0
+0
+R7
+0
+R14
+Enchanted Refuge
+This enchanted room  is a safe spot protected by magical wards. Inside has a glowing pool and grants rejuvenation to heal and a save area for the player.
+0
+0
+0
+R5
+R15
+Vibrant Collecting Room
+This room is after the vibrant chamber boss, this room allows you to explore and collect vibrant treasures that lie within. the player can  collect these items and trade them in for better equipment. 
+R6
+0
+R1
+0
+R16
+Serpent Collecting Room
+This room invites the player to explore after winning the boss battle in serpents dens. This room allows the player to explore and collect treasures with the hidden sands.
+0
+R18
+0
+R12
+R17
+Feline Collecting Room
+This room invites the player to explore after winning the boss battle in Feline Lair. This room allows the player to explore and collect treasures and a new weapon.
+0
+0
+R2
+0
+R18
+Feline Lair SafeSpot
+This room is a safe spot for the Feline lair if the player needs rest or to get away from the boss. 
+0
+R2
+R16
+R11
+R19
+Lunar Labyrinth
+a lair with moonlit floor tiles that uses winding paths with the phases of the moon guiding the way. Riddles tied to the lair offering challenges.
+R9
+0
+0
+R1
+R20
+Whispering Winds
+enter this room where it holds secrets as the wall is adorned with floating phrases. the pedestal awaits for your answer as you solve a riddle to unlock a new item.
+0
+R1
+0
+0
