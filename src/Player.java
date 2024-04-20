@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player
 {
@@ -112,13 +113,14 @@ public class Player
 
     }
 
-    public void drop(Items i)
+    public void drop(Items i, Room currentRoom)
     {
-        //Still need to add dropped item into the room
         List<Item> itemsToRemove = new ArrayList<>();
-        for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(i)) {
-                itemsToRemove.add(item);
+        for (Item currentItem : inventory) {
+            if (currentItem.getName().equalsIgnoreCase(i.getName())) {
+                itemsToRemove.add(currentItem);
+                currentRoom.addItem(i);
+                System.out.println("Dropped " + i.getName());
             }
         }
         inventory.removeAll(itemsToRemove);
@@ -127,31 +129,32 @@ public class Player
         }
     }
 
-    public void useHealingItem(Items i) //Consume potions
+    public void useHealingItem(Items i) //Consume healing potions
     {
-        for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(i) && item.isConsumable()) {
-                inventory.remove(item);
-                //Health potion fully heals player - get max health
-                //Damage potion doubles player attack for one fight
+        for (Item currentItem : inventory) {
+            if (currentItem.getName().equalsIgnoreCase(i) && currentItem.isConsumable()) {
+                int healthIncrease = ((Consume) currentItem).getHealthIncrease();
+                currentHealth += healthIncrease
+                inventory.remove(currentItem);
                 System.out.println("Consumed " + i);
             }
         }
-        if (!item.isComsumable) {
+        if (!currentItem.isComsumable) {
             System.out.println("Item cannot be consumed");
         }
     }
 
-    public void useDamagingItem(Items i) //Use items
+    public void useDamagingItem(Items i) //Use damage potion?
     {
-        for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(i) && item.isUsable()) {
-                inventory.remove(item);
-                //Items with different uses
+        for (Item currentItem : inventory) {
+            if (currentItem.getName().equalsIgnoreCase(i) && currentItem.isUsable()) {
+                int damageIncrease = ((Equipment) currentItem).getAttackIncrease();
+                // Deal damage to monster
+                inventory.remove(currentItem);
                 System.out.println("Used " + i);
             }
         }
-        if (!item.isUsable) {
+        if (!currentItem.isUsable) {
             System.out.println("Item cannot be used");
         }
     }
