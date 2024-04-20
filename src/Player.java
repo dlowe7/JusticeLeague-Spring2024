@@ -9,6 +9,8 @@ public class Player
     
     //variables for level ups:
     int healthIncrease = 10, damageIncrease = 3, expRequired = 300;
+    
+    boolean inCombat = false;
 
     //constructor to be uncommented once the items class is done
 
@@ -153,7 +155,7 @@ public class Player
         for (Items currentItem : inventory) {
             if (currentItem.getName().equals(i) && currentItem.isConsumable()) {
                 int healthIncrease = ((Consume) currentItem).getHealthIncrease();
-                currentHealth += healthIncrease
+                currentHealth += healthIncrease;
                 inventory.remove(currentItem);
                 System.out.println("Consumed " + i);
             }
@@ -163,7 +165,7 @@ public class Player
         }
     }
 
-    public void useDamagingItem(Items i) //Use damage potion?
+    public void useDamagingItem(Items i) //Use damage potion? yes, and other damaging items that are consumable
     {
         for (Items currentItem : inventory) {
             if (currentItem.getName().equalsIgnoreCase(i) && currentItem.isUsable()) {
@@ -220,9 +222,14 @@ public class Player
         return new StringBuilder();
     }
 
-    public void engage()
+    public void engage(ArrayList<Monster> m)
     {
-
+    	for(int i = 0; i < m.size(); i++) {
+    		if(m.get(i).equals(currentRoomId)) 
+    		{
+    			inCombat = true;
+    		}
+    	}
     }
 
     public void ignore()
@@ -236,6 +243,6 @@ public class Player
     //lost.
     public void attack()
     {
-
+    	
     }
 }
