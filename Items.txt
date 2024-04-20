@@ -6,3 +6,115 @@ false
 false
 true
 There's a really cool method called display help that will show you the commands
+Flickering_Torch
+A tool that is used to bring flickering light to get rid of shadows
+I2
+R15
+false
+false
+true
+text in place
+Heavenly_Compass
+A special, religious compass that points towards hidden secrets, rare items, or alternate rooms. Its needle shivers when danger is nigh.
+I3
+P4
+false
+false
+true
+Use it to point in a particular direction to a room you are in. Spin it to change direction.
+Gloomy_Bow_and_Arrow
+A weapon dropped by Dusklords in Shadowy Ambush Dens
+I4
+M3
+false
+true
+false
+0
+7
+Slash's_Sword
+A weapon dropped after defeating Slash in Swordsman's Arena
+I5
+M5
+false
+true
+false
+0
+10
+Electric_Charge
+Use it to shock monsters as a way to deal damage
+I6
+M1
+true
+false
+false
+0
+5
+Anti-Seismo-Boots
+A defensive piece of armor dropped by Terra Deleos from Resonance Chambers
+I7
+M4
+false
+true
+false
+3
+0
+Hinter
+Use it to reveal to the player secret hints to mysterious puzzles
+I8
+P1
+false
+false
+true
+GET HINT METHOD
+Reflective_Mirror
+Use it to show a special heroic impression about your progress in the game
+I9
+P7
+false
+false
+true
+show game stats
+Hourglass
+Use it to increase the amount of attempts you have to solve a puzzle
+I10
+P5
+false
+false
+true
+increase # of attempts
+Health_Potion
+Use it to heal yourself back to full health
+I11
+P2
+true
+false
+false
+999
+0
+Health_Potion
+Use it to heal yourself back to full health
+I11
+P6
+true
+false
+false
+999
+0
+Health_Potion
+Use it to heal yourself back to full health
+I11
+R16
+true
+false
+false
+999
+0
+Damage_Potion
+Use it to double your damage for one fight
+I12
+R13
+true
+false
+false
+0
+50
