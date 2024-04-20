@@ -5,3 +5,45 @@ map
 R19
 true
 Hinter
+P2
+Anagram
+tetaus
+Statue
+R10
+true
+Health_Potion
+P3
+Riddle
+I travel the world while staying in my corner, what am I?
+Stamp
+R4
+false
+none
+P4
+Riddle
+I fly without wings, I cry without eyes. What am I?
+Cloud
+R11
+true
+Heavenly_Compass
+P5
+Riddle
+What can keep you alive, but prevent you from living?
+Fear
+R20
+true
+Hourglass
+P6
+Anagram
+ipisrt
+Spirit
+R17
+true
+Health_Potion
+P7
+Anagram
+sutreare
+treasure
+R14
+true
+Reflective_Mirror
