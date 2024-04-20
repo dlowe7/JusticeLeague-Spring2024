@@ -43,8 +43,45 @@ public class Map
     }
 
     //this method parses data for the items
-    public void readItems(String itemFileName)
+    public void readItems(File itemFileName)
     {
+    	try 
+    	{
+			fileReader = new Scanner(itemFileName);
+		} catch (FileNotFoundException e) 
+    	{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	while(fileReader.hasNext()) 
+    	{
+    		String name = fileReader.nextLine();
+    		String description = fileReader.nextLine();
+    		String itemID = fileReader.nextLine();
+    		String location = fileReader.nextLine(); 
+			boolean isConsumable = fileReader.nextBoolean();
+    		boolean isEquipable = fileReader.nextBoolean();
+    		boolean isUsable = fileReader.nextBoolean();
+    		
+    		//just for initializing
+    		int defenseIncrease, attackIncrease;
+    		int healthIncrease, healthDecrease;
+    		String otherCondition;
+    		
+    		if(isEquipable) {
+    			defenseIncrease = fileReader.nextInt();
+    			attackIncrease = fileReader.nextInt();
+    		}
+    		else if(isEquipable) {
+    			healthIncrease = fileReader.nextInt();
+    			healthDecrease = fileReader.nextInt();
+    		}
+    		else if(isUsable){
+    			otherCondition = fileReader.nextLine();
+    		}
+    		
+    	}
+    	
     	
     }
 

@@ -3,13 +3,13 @@ public class Items
 		private String name;
 		private String description;
 		private String itemID;
-		private int location;
+		private String location; //Changed this to a string as the room Ids are strings like R1, R2, R3 and so on.
 		private boolean isConsumable;
 		private boolean isEquipable;
 		private boolean isUsable;
 
 		// Constructor
-		public Items(String name, String description, String itemID, int location, 
+		public Items(String name, String description, String itemID, String location, 
 				boolean isConsumable, boolean isEquipable, boolean isUsable) 
 			{
 				this.name = name;
@@ -68,7 +68,7 @@ public class Items
 			}
 
 		// Getter for item location
-		public int getLocation() 
+		public String getLocation() 
 			{
 				return this.location;
 			}
