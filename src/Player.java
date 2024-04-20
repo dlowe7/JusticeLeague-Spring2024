@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player
 {
@@ -109,16 +110,34 @@ public class Player
 
     public void pickup(Items i)
     {
+        List<Items> roomItems = currentRoom.getRoomInventory();
+        List<Items> itemsToRemove = new ArrayList<>();
+        boolean itemFound = false;
+        for (Items currentItem : roomItems) {
+            if (currentItem.getName().equals(i.getName())) {
+                itemsToRemove.add(currentItem);
+                inventory.add(currentItem);
+                itemFound = true;
+                System.out.println("Picked up " + i.getName());
+                break;
+            }
+        }
 
+        if (!itemFound) {
+            System.out.println("Item not found");
+        }
+        roomItems.removeAll(itemsToRemove);
     }
 
     public void drop(Items i, Room currentRoom)
     {
         List<Items> itemsToRemove = new ArrayList<>();
+        boolean itemFound = false;
         for (Items currentItem : inventory) {
-            if (currentItem.getName().equalsIgnoreCase(i.getName())) {
+            if (currentItem.getName().equals(i.getName())) {
                 itemsToRemove.add(currentItem);
                 currentRoom.addItem(i);
+                itemFound = true;
                 System.out.println("Dropped " + i.getName());
                 break;
             }
@@ -132,7 +151,7 @@ public class Player
     public void useHealingItem(Items i) //Consume healing potions
     {
         for (Items currentItem : inventory) {
-            if (currentItem.getName().equalsIgnoreCase(i) && currentItem.isConsumable()) {
+            if (currentItem.getName().equals(i) && currentItem.isConsumable()) {
                 int healthIncrease = ((Consume) currentItem).getHealthIncrease();
                 currentHealth += healthIncrease
                 inventory.remove(currentItem);

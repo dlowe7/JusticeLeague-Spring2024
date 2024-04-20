@@ -18,8 +18,12 @@ public class Room{
         this.eastExit = eastExit;
         this.westExit = westExit;
         this.southExit = southExit;
-        //this.roomInventory = roomInventory;
+        this.roomInventory = new ArrayList<>();
     }
+
+    public ArrayList<Items> getRoomInventory(); { return roomInventory; }
+    public void addItem(Items i) { roomInventory.add(i); }
+    public void removeItem(Items i) { roomInventory.remove(i); }
     
     //This is used since the parse items method in map hasn't been made at the time
     public void addItemsFromMap(ArrayList<Items> roomInventory) {
