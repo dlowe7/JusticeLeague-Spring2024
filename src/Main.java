@@ -12,6 +12,7 @@ public class Main
         game.readMonster(new File("Monsters.txt"));
         game.readPlayerStats(new File("Player.txt"));
         game.readItems(new File("Items.txt"));
+        game.readPuzzle(new File("Puzzles.txt"));
         
         //game.readItems(new File("Items.txt"));
         //game.readPuzzles(new File("Puzzles.txt"));

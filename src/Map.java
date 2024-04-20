@@ -113,13 +113,17 @@ public class Map
 			e.printStackTrace();
 		}
 		
-		String puzzleID;
-		String type;
-		String question;
-		String answer; //This is needed for the requirements
-		boolean rewardsPuzzle; //one of the puzzle rewards is unlocking a room while the rest give items.
-		String itemReward; //This will be the name of the item that will be given.
+		while(fileReader.hasNext()) {
+		String puzzleID = fileReader.nextLine();
+		String type  = fileReader.nextLine();
+		String question  = fileReader.nextLine();
+		String answer  = fileReader.nextLine(); //This is needed for the requirements
+		String location = fileReader.nextLine();
+		boolean rewardsPuzzle = Boolean.parseBoolean(fileReader.nextLine()); //one of the puzzle rewards is unlocking a room while the rest give items. true if the puzzle gives an item
+		String itemReward = fileReader.nextLine(); //This will be the name of the item that will be given.
 		
+		allPuzzles.add(new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward));
+		}
 		
 	}
 

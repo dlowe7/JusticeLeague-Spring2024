@@ -4,6 +4,7 @@ public class Puzzle
 		private String question;
 		private String answer;
 		private String type; //This is needed for the requirements
+		String location;
 		private int attempts;
 		private boolean isSolved;
 		private int hintsGiven;
@@ -11,12 +12,13 @@ public class Puzzle
 		private String itemReward; //This will be the name of the item that will be given.
 
 		// Constructor
-		public Puzzle(String id, String type, String question, String answer, boolean rewardsPuzzle, String itemReward) 
+		public Puzzle(String id, String type, String question, String answer, String location, boolean rewardsPuzzle, String itemReward) 
 			{
 				this.puzzleID = id;
 				this.type = type;
 				this.question = question;
 				this.answer = answer;
+				this.location = location;
 				this.attempts = 4; // Default number of attempts
 				this.isSolved = false;
 				this.hintsGiven = 0; //problem with this is that the # of hints are for the whole game, not per puzzle

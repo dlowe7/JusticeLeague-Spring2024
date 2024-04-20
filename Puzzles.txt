@@ -1,0 +1,7 @@
+P1
+Riddle
+What has cities with no people, and rivers with no water?
+map
+R19
+true
+Hinter
