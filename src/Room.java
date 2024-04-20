@@ -21,7 +21,8 @@ public class Room{
         this.roomInventory = new ArrayList<>();
     }
 
-    public ArrayList<Items> getRoomInventory(); { return roomInventory; }
+    public ArrayList<Items> getRoomInventory() { return roomInventory; }
+    
     public void addItem(Items i) { roomInventory.add(i); }
     public void removeItem(Items i) { roomInventory.remove(i); }
     
@@ -30,8 +31,36 @@ public class Room{
     	this.roomInventory = roomInventory;
     }
 
-    public void setRoomId(int id){
+	public String getRoomId() {
+		return roomId;
+	}
 
-    }
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
+	}
 
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public String getRoomDesc() {
+		return roomDesc;
+	}
+
+	public String getNorthExit() {
+		return northExit;
+	}
+
+	public String getEastExit() {
+		return eastExit;
+	}
+
+	public String getWestExit() {
+		return westExit;
+	}
+
+	public String getSouthExit() {
+		return southExit;
+	}
+    
 }
