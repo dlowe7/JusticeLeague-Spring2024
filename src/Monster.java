@@ -16,4 +16,22 @@ public class Monster
         this.hp = hp;
         this.attack = attack;
     }
+    
+    public int getAttack(){
+    	return this.attack;
+    }
+    
+    public void setHealth(int h) {
+    	hp = h;
+    }
+    
+    public String getDescription() {
+    	return description;
+    }
+    
+    public String getAbility() {
+    	return abilities;
+    }
+    
+    
 }

@@ -10,7 +10,11 @@ public class Player
     //variables for level ups:
     int healthIncrease = 10, damageIncrease = 3, expRequired = 300;
     
+    //for methods or added in later
     boolean inCombat = false;
+    boolean gameOver = false;
+    boolean hasEquipped;
+    Equipment equipped;
 
     //constructor to be uncommented once the items class is done
 
@@ -232,7 +236,7 @@ public class Player
     	}
     }
 
-    public void ignore()
+    public void ignore() //not needed
     {
 
     }
@@ -241,8 +245,43 @@ public class Player
     //but may need to take in a monster.
     //May change void to boolean to show if the player won or
     //lost.
-    public void attack()
+    public void attack(ArrayList<Monster> m)
     {
+    	int monsterLocation = -1;
+    	for(int i = 0; i < m.size(); i++) {
+    		if(m.get(i).location.equals(currentRoomId)) 
+    		{
+    			monsterLocation = i;
+    		}
+    	}
+    	
+    	if(monsterLocation == -1) {
+    		return;
+    	}
+    	
+    	System.out.println("player hp: " + currentHealth + "/" + maxHealth);
+    	System.out.println(m.get(monsterLocation).name + " hp: " + m.get(monsterLocation).hp);
+    	if(hasEquipped) {
+    		m.get(monsterLocation).setHealth(m.get(monsterLocation).hp - (equipped.attackIncrease + baseDamage));
+    		System.out.println("You attacked the monster and dealt " + (equipped.attackIncrease + baseDamage) + " damage!");
+    	}
+    	else {
+    		m.get(monsterLocation).setHealth(m.get(monsterLocation).hp - (baseDamage));
+    		System.out.println("You attacked the monster and dealt " + baseDamage + " damage!");
+    	}
+    	if(m.get(monsterLocation).hp <= 0) {
+    		System.out.println("You defeated the monster!");
+    		inCombat = false;
+    	}
+    	System.out.println("player hp: " + currentHealth + "/" + maxHealth);
+    	System.out.println(m.get(monsterLocation).name + " hp: " + m.get(monsterLocation).hp);
+    	System.out.println("The monster is attacking back!");
+    	currentHealth -= m.get(monsterLocation).attack;
+    	if(currentHealth <= 0) {
+    		System.out.println("You've been defeated. would you like to start a new game or load a save file?");
+    		inCombat = false;
+    		gameOver = true;
+    	}
     	
     }
 }
