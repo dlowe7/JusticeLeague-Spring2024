@@ -180,33 +180,33 @@ public class Map
 
 	//All of the below methods will be uncommented out
 	//once the rest of the classes are made
-	/*
-    public List<Room> getAllRooms()
+	
+    public ArrayList<Room> getAllRooms()
     {
-
+    	return allRooms;
     }
 
-    public List<Items> getAllItems()
+    public ArrayList<Items> getAllItems()
     {
-
+    	return allItems;
     }
 
-    public List<Puzzle> getAllPuzzles()
+    public ArrayList<Puzzle> getAllPuzzles()
     {
-
+    	return allPuzzles;
     }
 
-    public List<Monster> getAllMonsters()
+    public ArrayList<Monster> getAllMonsters()
     {
-
+    	return allMonsters;
     }
 
-    public List<Player> getAllPlayerStats()
+    public Player getAllPlayerStats()
     {
-
+    	return allPlayerStats;
     }
 
-	 */
+	 
 
 	//Honestly I'm not entirely sure what the purpose
 	//for this will be, but we will cross that bridge
