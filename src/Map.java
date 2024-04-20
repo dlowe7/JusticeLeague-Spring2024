@@ -57,29 +57,38 @@ public class Map
 		{
 			String name = fileReader.nextLine();
 			String description = fileReader.nextLine();
+			
 			String itemID = fileReader.nextLine();
 			String location = fileReader.nextLine(); 
-			boolean isConsumable = fileReader.nextBoolean();
-			boolean isEquipable = fileReader.nextBoolean();
-			boolean isUsable = fileReader.nextBoolean();
+			boolean isConsumable = Boolean.parseBoolean(fileReader.nextLine());
+			
+			boolean isEquipable = Boolean.parseBoolean(fileReader.nextLine());
+			boolean isUsable = Boolean.parseBoolean(fileReader.nextLine());
 
 			//just for initializing
 			int defenseIncrease, attackIncrease;
 			int healthIncrease, healthDecrease;
 			String otherCondition;
 
-			while(fileReader.hasNext()) 
-			{
+			
 				if(isEquipable) 
 				{
 					defenseIncrease = fileReader.nextInt();
 					attackIncrease = fileReader.nextInt();
+					if(fileReader.hasNext()) {
+						fileReader.next();
+					}
+					
 					allItems.add(new Equipment(name, description, itemID, location, isConsumable, isEquipable, isUsable, defenseIncrease, attackIncrease));
 				}
-				else if(isEquipable) 
+				else if(isConsumable) 
 				{
 					healthIncrease = fileReader.nextInt();
 					healthDecrease = fileReader.nextInt();
+					if(fileReader.hasNext()) {
+						fileReader.next();
+					}
+					
 					allItems.add(new Consume(name, description, itemID, location, isConsumable, isEquipable, isUsable, healthIncrease, healthDecrease));
 				}
 				else if(isUsable)
@@ -89,15 +98,29 @@ public class Map
 				}
 			}
 
-		}
+		
 
 
 	}
 
 	//this method parses data for the puzzle
-	public void readPuzzle(String puzzleFileName)
+	public void readPuzzle(File puzzleFileName)
 	{
-
+		try {
+			fileReader = new Scanner(puzzleFileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String puzzleID;
+		String type;
+		String question;
+		String answer; //This is needed for the requirements
+		boolean rewardsPuzzle; //one of the puzzle rewards is unlocking a room while the rest give items.
+		String itemReward; //This will be the name of the item that will be given.
+		
+		
 	}
 
 	//this method parses data for the monsters

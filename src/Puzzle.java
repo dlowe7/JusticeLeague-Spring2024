@@ -11,7 +11,7 @@ public class Puzzle
 		private String itemReward; //This will be the name of the item that will be given.
 
 		// Constructor
-		public Puzzle(String id, String type, String question, String answer) 
+		public Puzzle(String id, String type, String question, String answer, boolean rewardsPuzzle, String itemReward) 
 			{
 				this.puzzleID = id;
 				this.type = type;
@@ -20,6 +20,8 @@ public class Puzzle
 				this.attempts = 4; // Default number of attempts
 				this.isSolved = false;
 				this.hintsGiven = 0; //problem with this is that the # of hints are for the whole game, not per puzzle
+				this.rewardsPuzzle = rewardsPuzzle;
+				this.itemReward = itemReward;
 			}
 		
 		//Some of these methods should be in the player class, if not all.
