@@ -1,0 +1,8 @@
+Guidebook
+A book that guides you to start the game
+I1
+R1
+false
+false
+true
+There's a really cool method called display help that will show you the commands
