@@ -147,7 +147,10 @@ public class Map
 			exp = fileReader.nextInt();
 			hp = fileReader.nextInt();
 			attack = fileReader.nextInt();
-			//fileReader.next();//This line is to get rid of the buffer... or so I thought, but it might be needed once there is more data
+			if(fileReader.hasNext()) 
+			{	
+				fileReader.next();
+			}
 
 			allMonsters.add(new Monster(ID, name, description, abilities, location, exp, hp, attack));
 		}
