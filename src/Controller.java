@@ -5,6 +5,17 @@ public class Controller {
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
 
+    public void startGame() {
+        Player player = player.getPlayer();
+        view.displayWelcomeMessage();
+        while (true) {
+            Room currentRoom = player.getCurrentRoom();
+            view.displayRoom(currentRoom);
+            String input = getUserInput("What do you want to do? (Type 'help' to view commands): ");
+            parseInput(input);
+        }
+    }
+
     private void parseInput(String input) {
         String[] inputParts = input.split(" ");
         String command = inputParts[0];
@@ -27,6 +38,8 @@ public class Controller {
             case "save":
             case "load":
             case "exit":
+                player.exit();
+                break;
 
             //Item Frs
             case "pickup":
@@ -70,7 +83,11 @@ public class Controller {
                 break;
             case "attack":
                 player.attack();
+                break;
 
+            case "help":
+                displayHelp();
+                break;
             default:
                 view.displayMessage("Invalid command. Type 'help' for available commands.");
         }
