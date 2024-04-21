@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Controller {
 
     public static final String BOLD = "\u001B[1m";
@@ -19,6 +20,9 @@ public class Controller {
     private void parseInput(String input) {
         String[] inputParts = input.split(" ");
         String command = inputParts[0];
+        String itemName = inputParts.length > 1 ? inputParts[1] : "";
+        String puzzleName = inputParts.length > 1 ? inputParts[1] : "";
+        String monsterName = inputParts.length > 1 ? inputParts[1] : "";
         Player player;
 
         switch (command) {
@@ -91,6 +95,12 @@ public class Controller {
             default:
                 view.displayMessage("Invalid command. Type 'help' for available commands.");
         }
+    }
+
+    private String getUserInput(String prompt) {
+        System.out.println(prompt);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine().toLowerCase();
     }
 
     private void displayHelp() {
