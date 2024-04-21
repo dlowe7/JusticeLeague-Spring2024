@@ -1,117 +1,77 @@
-public class Puzzle 
-	{
-		private String puzzleID;
-		private String question;
-		private String answer;
-		private String type; //This is needed for the requirements
-		String location;
-		private int attempts;
-		private boolean isSolved;
-		private int hintsGiven;
-		private boolean rewardsPuzzle; //one of the puzzle rewards is unlocking a room while the rest give items.
-		private String itemReward; //This will be the name of the item that will be given.
-		private String[] hints;  // An array or list of hints
-		private int hintIndex;
+public class Puzzle {
+    private String puzzleID;
+    private String question;
+    private String answer;
+    private String type;
+    private String location;
+    private int attempts;
+    private boolean isSolved;
+    private int hintsGiven;
+    private boolean rewardsPuzzle;
+    private String itemReward;
+    private String[] hints;  // Store multiple hints for dynamic provision.
 
-		// Constructor
-		public Puzzle(String id, String type, String question, String answer, String location, boolean rewardsPuzzle, String itemReward, String[] hints) 
-			{
-				this.puzzleID = id;
-				this.type = type;
-				this.question = question;
-				this.answer = answer;
-				this.location = location;
-				this.attempts = 4; // Default number of attempts
-				this.isSolved = false;
-				this.hints = hints;
-				this.hintIndex = 0;
-				this.rewardsPuzzle = rewardsPuzzle;
-				this.itemReward = itemReward;
-			}
+    // Constructor
+    public Puzzle(String id, String type, String question, String answer, String location,
+                  boolean rewardsPuzzle, String itemReward, String[] hints) {
+        this.puzzleID = id;
+        this.type = type;
+        this.question = question;
+        this.answer = answer;
+        this.location = location;
+        this.attempts = 4;
+        this.isSolved = false;
+        this.hintsGiven = 0;
+        this.rewardsPuzzle = rewardsPuzzle;
+        this.itemReward = itemReward;
+        this.hints = hints;
+    }
 
-		//Some of these methods should be in the player class, if not all.
+    // Method to return puzzle question for examination
+    public String examine() {
+        if (!isSolved) {
+            return "Puzzle " + this.puzzleID + ": " + this.question + " (Type: " + this.type + ")";
+        } else {
+            return "Puzzle " + this.puzzleID + " has already been solved.";
+        }
+    }
 
-		// Method to return puzzle question for examination
-		public String examine() 
-			{
-				if (!isSolved) 
-					{
-						return "Puzzle " + this.puzzleID + ": " + this.question;
-					} 
-				else 
-					{
-						return "Puzzle " + this.puzzleID + " has already been solved.";
-					}
-			}
+    // Attempt to solve the puzzle
+    public String solve(String playerInput) {
+        if (isSolved) {
+            return "This puzzle has already been solved.";
+        }
+        if (attempts > 0) {
+            attempts--;
+            if (this.answer.equalsIgnoreCase(playerInput)) {
+                isSolved = true;
+                handleReward();  // Handle rewards directly upon solving.
+                return "Correct! The puzzle is solved.";
+            } else {
+                return "Incorrect. Try again. Attempts left: " + attempts;
+            }
+        } else {
+            return "No attempts left to solve this puzzle.";
+        }
+    }
 
-		//Important: the method should also give an item to the player when solved,
-		//or unlock a room if prompted (This part can be worked on later).
-		// Method to attempt to solve the puzzle, returns result as a string
-		public String solve(String playerInput) 
-			{
-				if (!isSolved && attempts > 0) 
-					{
-						attempts--;
-						if (this.answer.equalsIgnoreCase(playerInput)) 
-							{
-								isSolved = true;
-								return "Correct! The puzzle is solved.";
-							} 
-						else 
-							{
-								return "Incorrect. Try again. Attempts left: " + attempts;
-							}
-					} 
-				else 
-					{
-						return "No attempts left or puzzle already solved.";
-					}
-			}
+    // Provide a hint, respects hint limits
+    public String giveHint() {
+        if (!isSolved && hintsGiven < 2) {
+            if (hintsGiven < hints.length) {
+                return "Hint " + (hintsGiven + 1) + " for Puzzle " + this.puzzleID + ": " + hints[hintsGiven++];
+            }
+        }
+        return "No more hints available.";
+    }
 
-		// Method to provide a hint, returns the hint or a message
-		public String giveHint() 
-			{
-				if (!isSolved && hintIndex < hints.length) 
-					{
-						String hint = hints[hintIndex++];
-						return "Hint for Puzzle " + this.puzzleID + ": " + hint;
-					} 
-				else 
-					{
-						return "No more hints available.";
-					}
-			}
-
-		// Getters
-		public boolean isSolved() 
-			{
-				return isSolved;
-			}
-
-		// Dummy implementation of generateHint(), should be properly implemented
-		private String generateHint() 
-			{
-				// This method should generate a useful hint based on the puzzle's specifics
-				return "This is a generic hint.";
-			}
-
-
-		public void handleReward(Controller controller) 
-			{
-				if (isSolved && rewardsPuzzle) 
-					{
-						if (!itemReward.isEmpty()) 
-							{
-								controller.givePlayerItem(itemReward);
-								System.out.println("Player has received " + itemReward + ".");
-							} 
-						else 
-							{
-								controller.unlockRoom(location);  // Assuming location holds room to be unlocked
-								System.out.println("Room " + location + " has been unlocked.");
-							}
-					}
-			}
+    // Handles rewards and actions after solving the puzzle
+    private void handleReward() {
+        if (rewardsPuzzle && !itemReward.isEmpty()) {
+            System.out.println("Player receives: " + itemReward);
+            // Further integration to provide item to player goes here.
+        }
+    }
 
 		public String getPuzzleID() 
 			{
