@@ -10,9 +10,11 @@ public class Puzzle
 		private int hintsGiven;
 		private boolean rewardsPuzzle; //one of the puzzle rewards is unlocking a room while the rest give items.
 		private String itemReward; //This will be the name of the item that will be given.
+		private String[] hints;  // An array or list of hints
+		private int hintIndex;
 
 		// Constructor
-		public Puzzle(String id, String type, String question, String answer, String location, boolean rewardsPuzzle, String itemReward) 
+		public Puzzle(String id, String type, String question, String answer, String location, boolean rewardsPuzzle, String itemReward, String[] hints) 
 			{
 				this.puzzleID = id;
 				this.type = type;
@@ -21,7 +23,8 @@ public class Puzzle
 				this.location = location;
 				this.attempts = 4; // Default number of attempts
 				this.isSolved = false;
-				this.hintsGiven = 0; //problem with this is that the # of hints are for the whole game, not per puzzle
+				this.hints = hints;
+				this.hintIndex = 0;
 				this.rewardsPuzzle = rewardsPuzzle;
 				this.itemReward = itemReward;
 			}
@@ -68,10 +71,10 @@ public class Puzzle
 		// Method to provide a hint, returns the hint or a message
 		public String giveHint() 
 			{
-				if (!isSolved && hintsGiven < 2) 
+				if (!isSolved && hintIndex < hints.length) 
 					{
-						hintsGiven++;
-						return "Hint " + hintsGiven + " for Puzzle " + this.puzzleID + ": " + generateHint(); // Assuming generateHint() is implemented
+						String hint = hints[hintIndex++];
+						return "Hint for Puzzle " + this.puzzleID + ": " + hint;
 					} 
 				else 
 					{
@@ -90,6 +93,24 @@ public class Puzzle
 			{
 				// This method should generate a useful hint based on the puzzle's specifics
 				return "This is a generic hint.";
+			}
+
+
+		public void handleReward(Controller controller) 
+			{
+				if (isSolved && rewardsPuzzle) 
+					{
+						if (!itemReward.isEmpty()) 
+							{
+								controller.givePlayerItem(itemReward);
+								System.out.println("Player has received " + itemReward + ".");
+							} 
+						else 
+							{
+								controller.unlockRoom(location);  // Assuming location holds room to be unlocked
+								System.out.println("Room " + location + " has been unlocked.");
+							}
+					}
 			}
 
 		public String getPuzzleID() 

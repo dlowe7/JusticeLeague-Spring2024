@@ -9,8 +9,7 @@ public class Items
 		private boolean isUsable;
 
 		// Constructor
-		public Items(String name, String description, String itemID, String location, 
-				boolean isConsumable, boolean isEquipable, boolean isUsable) 
+		public Items(String name, String description, String itemID, String location, boolean isConsumable, boolean isEquipable, boolean isUsable) 
 			{
 				this.name = name;
 				this.description = description;
@@ -40,6 +39,7 @@ public class Items
 			}
 
 		// Method to examine item details
+		//OR public abstract void examine();
 		public String examine() 
 			{
 				return "Item: " + this.name + 

@@ -5,10 +5,7 @@ public class CombatManager {
         this.player = player;
     }
 
-    /**
-     * Initiates combat between the player and a specific monster.
-     * @param monster The monster that the player will engage.
-     */
+    
     public void engageMonster(Monster monster) {
         System.out.println("Combat started between " + player.getStatus() + " and " + monster.getDescription());
         while (!monster.isDefeated() && !player.isDefeated()) {
@@ -28,10 +25,7 @@ public class CombatManager {
         }
     }
 
-    /**
-     * Handles the player attacking the monster.
-     * @param monster The monster being attacked.
-     */
+   
     private void playerAttack(Monster monster) {
         int damageDealt = player.calculateDamage(); // This method should consider equipped items, buffs, etc.
         monster.takeDamage(damageDealt);
@@ -39,10 +33,7 @@ public class CombatManager {
         System.out.println(monster.getName() + " HP left: " + monster.getHp());
     }
 
-    /**
-     * Handles the monster attacking the player.
-     * @param monster The attacking monster.
-     */
+ 
     private void monsterAttack(Monster monster) {
         int damageReceived = monster.getAttack();
         player.takeDamage(damageReceived);

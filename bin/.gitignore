@@ -7,3 +7,5 @@
 /View.class
 /Consume.class
 /Equipment.class
+/InventoryManager.class
+/CombatManager.class

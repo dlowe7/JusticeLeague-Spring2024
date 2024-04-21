@@ -7,20 +7,20 @@ public class Equipment extends Items
 	public Equipment(String name, String description, String itemID, String location, boolean isConsumable,
 			boolean isEquipable, boolean isUsable, int defenseIncrease, int attackIncrease) 
 		{
-		super(name, description, itemID, location, isConsumable, isEquipable, isUsable);
-		this.defenseIncrease = defenseIncrease;
-		this.attackIncrease = attackIncrease;
-	}
-	
+			super(name, description, itemID, location, isConsumable, isEquipable, isUsable);
+			this.defenseIncrease = defenseIncrease;
+			this.attackIncrease = attackIncrease;
+		}
+
 	public int getDefenseIncrease() 
 		{
-        return defenseIncrease;
-    }
-	
+			return defenseIncrease;
+		}
+
 	public int getAttackIncrease() 
 		{
-        return attackIncrease;
-    }
-	
+			return attackIncrease;
+		}
+
 
 }
