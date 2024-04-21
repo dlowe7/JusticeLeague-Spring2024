@@ -110,6 +110,7 @@ public class Controller {
         view.displayMessage("- Map: Access the game map");
         view.displayMessage("- Statistics: View player statistics");
         view.displayMessage("- Inventory: View player inventory");
+        view.displayMessage("")
         //Save, Load, Exit
         view.displayMessage("Items:");
         view.displayMessage("- Pickup item-name: Pick up items");
@@ -118,5 +119,16 @@ public class Controller {
         view.displayMessage("- Consume item-name: Consume items");
         view.displayMessage("- Equip item-name: Equip items");
         view.displayMessage("- Unequip: Unequip items");
+        view.displayMessage("");
+        // Examine
+        view.displayMessage("Puzzles:");
+        view.displayMessage("- Hint: Get a hint");
+        view.displayMessage("- Solve: Solve the puzzle");
+        view.displayMessage("");
+
+        view.displayMessage("Monsters:");
+        view.displayMessage("- Engage: Enter combat with a monster");
+        view.displayMessage("- Ignore: Ignore the monster");
+        view.displayMessage("- Attack: Attack monsters");
     }
 }
