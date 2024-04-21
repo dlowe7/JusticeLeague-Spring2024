@@ -25,7 +25,7 @@ public class Puzzle
 				this.rewardsPuzzle = rewardsPuzzle;
 				this.itemReward = itemReward;
 			}
-		
+
 		//Some of these methods should be in the player class, if not all.
 
 		// Method to return puzzle question for examination
@@ -90,5 +90,75 @@ public class Puzzle
 			{
 				// This method should generate a useful hint based on the puzzle's specifics
 				return "This is a generic hint.";
+			}
+
+		public String getPuzzleID() 
+			{
+				return puzzleID;
+			}
+
+		public void setPuzzleID(String puzzleID) 
+			{
+				this.puzzleID = puzzleID;
+			}
+
+		public String getType() 
+			{
+				return type;
+			}
+
+		public void setType(String type) 
+			{
+				this.type = type;
+			}
+
+		public String getQuestion() 
+			{
+				return question;
+			}
+
+		public void setQuestion(String question) 
+			{
+				this.question = question;
+			}
+
+		public String getAnswer() 
+			{
+				return answer;
+			}
+
+		public void setAnswer(String answer) 
+			{
+				this.answer = answer;
+			}
+
+		public String getLocation() 
+			{
+				return location;
+			}
+
+		public void setLocation(String location) 
+			{
+				this.location = location;
+			}
+
+		public boolean isRewardsPuzzle() 
+			{
+				return rewardsPuzzle;
+			}
+
+		public void setRewardsPuzzle(boolean rewardsPuzzle) 
+			{
+				this.rewardsPuzzle = rewardsPuzzle;
+			}
+
+		public String getItemReward() 
+			{
+				return itemReward;
+			}
+
+		public void setItemReward(String itemReward) 
+			{
+				this.itemReward = itemReward;
 			}
 	}
