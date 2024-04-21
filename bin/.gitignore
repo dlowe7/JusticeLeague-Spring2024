@@ -9,3 +9,5 @@
 /Equipment.class
 /InventoryManager.class
 /CombatManager.class
+/GameEngine.class
+/GameSaveLoad.class

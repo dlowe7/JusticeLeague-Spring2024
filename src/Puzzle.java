@@ -38,21 +38,21 @@ public class Puzzle {
 
 	// Attempt to solve the puzzle
 	public String solve(String playerInput) {
-		if (isSolved) {
-			return "This puzzle has already been solved.";
-		}
-		if (attempts > 0) {
-			attempts--;
-			if (this.answer.equalsIgnoreCase(playerInput)) {
-				isSolved = true;
-				handleReward();  // Handle rewards directly upon solving.
-				return "Correct! The puzzle is solved.";
-			} else {
-				return "Incorrect. Try again. Attempts left: " + attempts;
-			}
-		} else {
-			return "No attempts left to solve this puzzle.";
-		}
+	    if (isSolved) {
+	        return "This puzzle has already been solved.";
+	    }
+	    if (attempts > 0) {
+	        attempts--;
+	        if (this.answer.equalsIgnoreCase(playerInput)) {
+	            isSolved = true;
+	            handleReward();  // Handle rewards directly upon solving.
+	            return "Correct! The puzzle is solved.";
+	        } else {
+	            return "Incorrect. Try again. Attempts left: " + attempts;
+	        }
+	    } else {
+	        return "No attempts left to solve this puzzle.";
+	    }
 	}
 
 	// Provide a hint, respects hint limits

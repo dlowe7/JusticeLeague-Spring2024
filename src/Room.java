@@ -1,13 +1,17 @@
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-public class Room
+
+public class Room implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	//Field variables
 	private String roomId;
 	private String roomName;
 	private String roomDesc;
-	//This creates a map
-	private String northExit, eastExit, westExit, southExit;
+	private HashMap<String, String> exits;  // HashMap to manage exits based on direction
 	ArrayList<Items> roomInventory;
 	private String currentRoomId;
 
@@ -17,11 +21,14 @@ public class Room
 		this.roomId = roomId;
 		this.roomName = roomName;
 		this.roomDesc = roomDesc;
-		this.northExit = northExit;
-		this.eastExit = eastExit;
-		this.westExit = westExit;
-		this.southExit = southExit;
 		this.roomInventory = new ArrayList<>();
+
+		// Initialize exits HashMap and store exits
+		exits = new HashMap<>();
+		exits.put("north", northExit);
+		exits.put("east", eastExit);
+		exits.put("west", westExit);
+		exits.put("south", southExit);
 	}
 
 	public ArrayList<Items> getRoomInventory() 
@@ -29,6 +36,10 @@ public class Room
 			return roomInventory; 
 		}
 
+	public List<Items> getAvailableItems() 
+		{
+			return new ArrayList<>(roomInventory); // Returns a copy of the list of items
+		}
 	public void addItem(Items i) 
 		{ 
 			roomInventory.add(i); 
@@ -38,18 +49,15 @@ public class Room
 			roomInventory.remove(i); 
 		}
 
-	//This is used since the parse items method in map hasn't been made at the time
-	public void addItemsFromMap(ArrayList<Items> roomInventory) {
-		this.roomInventory = roomInventory;
-	}
+	public String getRoomId() 
+		{
+			return roomId;
+		}
 
-	public String getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
-	}
+	public void setRoomId(String roomId) 
+		{
+			this.roomId = roomId;
+		}
 
 	public String getCurrentRoomId() 
 		{
@@ -69,20 +77,17 @@ public class Room
 		return roomDesc;
 	}
 
-	public String getNorthExit() {
-		return northExit;
-	}
+	public Items getItem() 
+		{
+			if (!roomInventory.isEmpty()) 
+				{
+					return roomInventory.remove(0); // Optionally remove the item from inventory when picked up
+				}
+			return null;
+		}
 
-	public String getEastExit() {
-		return eastExit;
-	}
-
-	public String getWestExit() {
-		return westExit;
-	}
-
-	public String getSouthExit() {
-		return southExit;
-	}
-
+	public String getNextRoomId(String direction) 
+		{
+			return exits.get(direction); // Retrieve next room based on direction
+		}
 }

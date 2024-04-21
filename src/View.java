@@ -9,13 +9,32 @@ public class View {
     }
 
     public void displayRoom(Room room) {
-        System.out.println(room.getRoomName);
-        System.out.println(room.getRoomDesc);
-        System.out.println();
+        if (room != null) {
+            System.out.println(room.getRoomName() + "\n" + room.getRoomDesc());
+        } else {
+            System.out.println("No room to display.");
+        }
     }
 
     public void displayMessage(String message) {
         System.out.println(message);
         System.out.println();
+    }
+    
+    
+    public void displayMap(String location) 
+    	{
+        System.out.println("Displaying map around your current location: " + location);
+        // Optionally, fetch and display details about the surrounding rooms or area
+        // This can be as simple or as complex as your game map allows
+    }
+    
+    public void displayItemDetails(Items item) {
+        System.out.println("Item Details:");
+        System.out.println("Name: " + item.getName());
+        System.out.println("Description: " + item.getDescription());
+        System.out.println("Usable: " + (item.isUsable() ? "Yes" : "No"));
+        System.out.println("Equipable: " + (item.isEquipable() ? "Yes" : "No"));
+        System.out.println("Consumable: " + (item.isConsumable() ? "Yes" : "No"));
     }
 }

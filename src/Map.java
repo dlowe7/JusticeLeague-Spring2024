@@ -21,7 +21,7 @@ public class Map
 	//be part of the readRooms method
 	public void readRooms(File roomFileName)
 	{
-		Room r;
+		Room room;
 		try {
 			fileReader = new Scanner(roomFileName);
 		} catch (FileNotFoundException e) {
@@ -36,12 +36,25 @@ public class Map
 			String east = fileReader.nextLine();
 			String west = fileReader.nextLine();
 			String south = fileReader.nextLine();
-			r = new Room(roomId, name, description, north, east, west, south);
-			allRooms.add(r);
+			room = new Room(roomId, name, description, north, east, west, south);
+			allRooms.add(room);
 		}
 
 	}
 
+	public Room getCurrentRoom(String roomId) 
+		{
+        for (Room room : allRooms) 
+        	{
+            if (room.getRoomId().equals(roomId)) 
+            	{
+                return room;
+            }
+        }
+        return null; // Return null if no room matches the ID
+    }
+	
+	
 	//this method parses data for the items
 	public void readItems(File itemFileName)
 	{
@@ -216,3 +229,4 @@ public class Map
 
 
 }
+

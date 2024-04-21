@@ -1,43 +1,84 @@
-public class CombatManager {
+import java.io.Serializable;
+
+public class CombatManager implements Serializable {
+    private static final long serialVersionUID = 1L; 
     private Player player;
+    private Monster currentMonster;
 
     public CombatManager(Player player) {
         this.player = player;
     }
 
-    
     public void engageMonster(Monster monster) {
+        this.currentMonster = monster;
         System.out.println("Combat started between " + player.getStatus() + " and " + monster.getDescription());
+
         while (!monster.isDefeated() && !player.isDefeated()) {
-            playerAttack(monster);
+            playerAttack();
             if (monster.isDefeated()) {
+                handleMonsterDefeat();
                 break;
             }
-            monsterAttack(monster);
+            monsterAttack();
         }
         if (player.isDefeated()) {
             System.out.println("Player has been defeated by " + monster.getName());
-            // Handle player defeat (e.g., game over, respawn, etc.)
-        } else {
-            System.out.println("Monster " + monster.getName() + " defeated");
-            player.gainExperience(monster.getExp()); // Assume monsters give experience
-            // Handle additional rewards or next steps after defeating the monster
+            handlePlayerDefeat();
         }
     }
 
-   
-    private void playerAttack(Monster monster) {
-        int damageDealt = player.calculateDamage(); // This method should consider equipped items, buffs, etc.
-        monster.takeDamage(damageDealt);
-        System.out.println("Player deals " + damageDealt + " damage to " + monster.getName());
-        System.out.println(monster.getName() + " HP left: " + monster.getHp());
+    private void playerAttack() {
+        int damageDealt = player.calculateDamage(); // Calculate damage based on player's stats and equipment
+        currentMonster.takeDamage(damageDealt);
+        System.out.println("Player deals " + damageDealt + " damage to " + currentMonster.getName());
     }
 
- 
-    private void monsterAttack(Monster monster) {
-        int damageReceived = monster.getAttack();
+    private void monsterAttack() {
+        int damageReceived = currentMonster.getAttack();
         player.takeDamage(damageReceived);
-        System.out.println(monster.getName() + " attacks! Player takes " + damageReceived + " damage.");
-        System.out.println("Player HP left: " + player.getCurrentHealth());
+        System.out.println(currentMonster.getName() + " attacks! Player takes " + damageReceived + " damage.");
+    }
+
+    private void handleMonsterDefeat() {
+        System.out.println("Monster " + currentMonster.getName() + " defeated");
+        player.gainExperience(currentMonster.getExp());
+        // Handle additional rewards or next steps after defeating the monster
+    }
+
+    private void handlePlayerDefeat() {
+        // Handle player defeat (e.g., game over, respawn, etc.)
+    }
+
+    public void equipWeapon(Equipment weapon) {
+        if (weapon != null && weapon.isEquipable()) {
+            if (player.getEquippedWeapon() != null) {
+                unequipWeapon();  // If already equipped, unequip current before equipping new one
+            }
+            player.setEquippedWeapon(weapon);
+            applyWeaponEffects(weapon);
+            System.out.println(weapon.getName() + " has been equipped.");
+        } else {
+            System.out.println("This item cannot be equipped as a weapon.");
+        }
+    }
+    
+    public void unequipWeapon() {
+        Equipment weapon = player.getEquippedWeapon();
+        if (weapon != null) {
+            removeWeaponEffects(weapon);
+            player.setEquippedWeapon(null);
+            System.out.println(weapon.getName() + " has been unequipped.");
+        }
+    }
+    
+    
+    private void applyWeaponEffects(Equipment weapon) {
+        // Increase attack power or other stats
+        player.adjustAttackPower(weapon.getAttackIncrease());
+    }
+
+    private void removeWeaponEffects(Equipment weapon) {
+        // Decrease attack power or revert other stats
+        player.adjustAttackPower(-weapon.getAttackIncrease());
     }
 }

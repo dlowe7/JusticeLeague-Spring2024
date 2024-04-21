@@ -1,5 +1,9 @@
-public class Items 
+import java.io.Serializable;
+
+public class Items implements Serializable
+
 	{
+	    private static final long serialVersionUID = 1L;
 		private String name;
 		private String description;
 		private String itemID;
@@ -72,4 +76,14 @@ public class Items
 			{
 				return this.location;
 			}
+		
+		public void displayItemDetails(Items item) {
+		    if (item != null) {
+		        System.out.println("Item: " + item.getName());
+		        System.out.println("Description: " + item.getDescription());
+		        // Additional details can be shown here
+		    } else {
+		        System.out.println("Item not found.");
+		    }
+		}
 	}

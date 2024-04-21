@@ -1,6 +1,10 @@
+import java.io.Serializable;
 
-public class Equipment extends Items
+
+
+public class Equipment extends Items implements Serializable
 {
+    private static final long serialVersionUID = 2L;  // Different from Items class
 	private int defenseIncrease;
 	private int attackIncrease;
 

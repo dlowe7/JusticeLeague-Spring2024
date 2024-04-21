@@ -1,23 +1,22 @@
-import java.io.File;
+
 
 public class Main 
 {
-	public static void main(String[] args) 
-		{
-			// Create an instance of Map
-			Map game = new Map();
+	    public static void main(String[] args) {
+	        try {
+	            // Create instances of Map, Player, and View
+	            Map gameMap = new Map();  // Assuming Map class has an appropriate constructor
+	            Player player = new Player("StartRoom", 100, 100, 1, 10, 0);  // Sample initial player setup
+	            View view = new View();  // This class should handle all user outputs
 
-			// Read data from files and populate game objects
-			game.readRooms(new File("Rooms.txt"));
-			game.readItems(new File("Items.txt"));
-			game.readPuzzle(new File("Puzzles.txt"));
-			game.readMonster(new File("Monsters.txt"));
-			game.readPlayerStats(new File("Player.txt"));
+	            // Initialize the Controller with Map, Player, and View
+	            Controller controller = new Controller(gameMap, player, view);
 
-			// Create an instance of Controller and pass the game instance to its constructor
-			Controller controller = new Controller(game);
-
-			// Start the game
-			controller.startGame();
-		}
-}
+	            // Start the game
+	            controller.startGame();
+	        } catch (Exception e) {
+	            System.err.println("Error initializing the game: " + e.getMessage());
+	            e.printStackTrace();
+	        }
+	    }
+	}
