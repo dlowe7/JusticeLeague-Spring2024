@@ -1,11 +1,20 @@
 public class Controller {
 
 	private Map game;
+	private Puzzle currentPuzzle;
+
 
 	public Controller(Map game) 
 		{
 			this.game = game;
 		}
+	public Controller(Puzzle puzzle) 
+		{
+			this.currentPuzzle = puzzle;
+		}
+
+
+
 
 	public void startGame() 
 		{
@@ -32,9 +41,8 @@ public class Controller {
 
 	private void initializePlayer(Room startingRoom) 
 		{
-			// Add logic to initialize the player in the starting room
-			// This is just a placeholder implementation
-			game.getAllPlayerStats().setCurrentRoomId(startingRoom);
+			Player player = game.getAllPlayerStats();
+			player.setCurrentRoomId(startingRoom.getRoomId());
 		}
 
 	private Room findStartingRoom() 
@@ -60,6 +68,30 @@ public class Controller {
 			// This is just a placeholder implementation
 			System.out.println("Game loop running...");
 		}
+	
+	public void displayPuzzle() {
+        System.out.println(currentPuzzle.examine());
+    }
+
+    public void submitPuzzleAnswer(String answer) {
+        String response = currentPuzzle.solve(answer);
+        System.out.println(response);
+        if (currentPuzzle.isSolved()) {
+            currentPuzzle.handleReward(this);
+        }
+    }
+
+    public void requestHint() {
+        System.out.println(currentPuzzle.giveHint());
+    }
+
+    public void givePlayerItem(String itemID) {
+        // Logic to add item to player's inventory
+    }
+
+    public void unlockRoom(String roomId) {
+        // Logic to unlock a room in the game environment
+    }
 
 	//This has to go in the view
 	/*  public static final String BOLD = "\u001B[1m";
@@ -139,19 +171,31 @@ public class Controller {
 	}
 
 	private void displayHelp() {
-		view.displayMessage("Available Commands:");
-		view.displayMessage("Player:");
-		view.displayMessage("- Move direction-name: Move to different rooms");
-		view.displayMessage("- Map: Access the game map");
-		view.displayMessage("- Statistics: View player statistics");
-		view.displayMessage("- Inventory: View player inventory");
-		//Save, Load, Exit
-		view.displayMessage("Items:");
-		view.displayMessage("- Pickup item-name: Pick up items");
-		view.displayMessage("- Drop item-name: Drop items");
-		view.displayMessage("- Use item-name: Use items");
-		view.displayMessage("- Consume item-name: Consume items");
-		view.displayMessage("- Equip item-name: Equip items");
-		view.displayMessage("- Unequip: Unequip items");
-	}
+        view.displayMessage("Available Commands:");
+        view.displayMessage("Player:");
+        view.displayMessage("- Move direction-name: Move to different rooms");
+        view.displayMessage("- Map: Access the game map");
+        view.displayMessage("- Statistics: View player statistics");
+        view.displayMessage("- Inventory: View player inventory");
+        view.displayMessage("")
+        //Save, Load, Exit
+        view.displayMessage("Items:");
+        view.displayMessage("- Pickup item-name: Pick up items");
+        view.displayMessage("- Drop item-name: Drop items");
+        view.displayMessage("- Use item-name: Use items");
+        view.displayMessage("- Consume item-name: Consume items");
+        view.displayMessage("- Equip item-name: Equip items");
+        view.displayMessage("- Unequip: Unequip items");
+        view.displayMessage("");
+        // Examine
+        view.displayMessage("Puzzles:");
+        view.displayMessage("- Hint: Get a hint");
+        view.displayMessage("- Solve: Solve the puzzle");
+        view.displayMessage("");
+
+        view.displayMessage("Monsters:");
+        view.displayMessage("- Engage: Enter combat with a monster");
+        view.displayMessage("- Ignore: Ignore the monster");
+        view.displayMessage("- Attack: Attack monsters");
+    }
 }
