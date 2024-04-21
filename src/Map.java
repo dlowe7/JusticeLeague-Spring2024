@@ -42,17 +42,16 @@ public class Map
 
 	}
 
-	public Room getCurrentRoom(String roomId) 
-		{
-        for (Room room : allRooms) 
-        	{
-            if (room.getRoomId().equals(roomId)) 
-            	{
-                return room;
-            }
-        }
-        return null; // Return null if no room matches the ID
-    }
+	public Room getCurrentRoom(String roomId) {
+	    System.out.println("Looking for Room ID: " + roomId);
+	    for (Room room : allRooms) {
+	        System.out.println("Checking Room ID: " + room.getRoomId());
+	        if (room.getRoomId().equals(roomId)) {
+	            return room;
+	        }
+	    }
+	    return null; // Return null if no room matches the ID
+	}
 	
 	
 	//this method parses data for the items

@@ -25,18 +25,23 @@ public class Controller {
 	}
 
 	public void startGame() {
-		view.displayWelcomeMessage();
-		while (!player.isDefeated()) {
-			try {
-				Room currentRoom = gameMap.getCurrentRoom(player.getCurrentRoomId());
-				view.displayRoom(currentRoom);
-				String input = getUserInput("What do you want to do? (Type 'help' for commands): ");
-				parseInput(input);
-			} catch (Exception e) {
-				view.displayMessage("An error occurred: " + e.getMessage());
-			}
-		}
-		view.displayMessage("Game Over!");
+	    view.displayWelcomeMessage();
+	    while (!player.isDefeated()) {
+	        try {
+	            Room currentRoom = gameMap.getCurrentRoom(player.getCurrentRoomId());
+	            if (currentRoom == null) {
+	                view.displayMessage("You are in an undefined room. Please check the game configuration.");
+	                break;  // Exit the loop if the room is not found
+	            }
+	            view.displayRoomDetails(currentRoom);
+	            String input = getUserInput("What do you want to do? (Type 'help' for commands): ");
+	            parseInput(input);
+	        } catch (Exception e) {
+	            view.displayMessage("An error occurred: " + e.getMessage());
+	            break;  // Optionally exit on error to avoid infinite loop
+	        }
+	    }
+	    view.displayMessage("Game Over!");
 	}
 
 	private void parseInput(String input) {

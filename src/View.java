@@ -30,6 +30,16 @@ public class View {
         //
     }
     
+    public void displayRoomDetails(Room room) {
+        if (room != null) {
+            System.out.println("Room Name: " + room.getRoomName());
+            System.out.println("Room Description: " + room.getRoomDesc());
+            // Optionally display exits or other room-related info here
+        } else {
+            System.out.println("No room information available.");
+        }
+    }
+    
     public void displayItemDetails(Items item) {
         System.out.println("Item Details:");
         System.out.println("Name: " + item.getName());
