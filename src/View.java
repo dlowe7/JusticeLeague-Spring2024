@@ -9,8 +9,8 @@ public class View {
     }
 
     public void displayRoom(Room room) {
-        System.out.println(room.getRoomName);
-        System.out.println(room.getRoomDesc);
+        System.out.println(room.getRoomName());
+        System.out.println(room.getRoomDesc());
         System.out.println();
     }
 
