@@ -27,6 +27,7 @@ public class View {
         System.out.println("Displaying map around your current location: " + location);
         // Optionally, fetch and display details about the surrounding rooms or area
         // This can be as simple or as complex as your game map allows
+        //
     }
     
     public void displayItemDetails(Items item) {
