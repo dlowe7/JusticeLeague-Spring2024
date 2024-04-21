@@ -5,6 +5,7 @@ map
 R19
 true
 Hinter
+Think about something that represents rather than contains.;You can see it in a classroom or an office, often hanging on the wall.
 P2
 Anagram
 tetaus
@@ -12,6 +13,7 @@ Statue
 R10
 true
 Health_Potion
+Rearrange the letters to form the name of something that often stands in a park or museum.;It could be made of stone or metal and often looks like a person or animal.
 P3
 Riddle
 I travel the world while staying in my corner, what am I?
@@ -19,6 +21,7 @@ Stamp
 R4
 false
 none
+I am small and you need me to send a letter.;I can take you places, but I never move from the upper right corner.
 P4
 Riddle
 I fly without wings, I cry without eyes. What am I?
@@ -26,6 +29,7 @@ Cloud
 R11
 true
 Heavenly_Compass
+Look up to the sky on a rainy day, what do you see?;I can block the sun and bring the rain.
 P5
 Riddle
 What can keep you alive, but prevent you from living?
@@ -33,6 +37,7 @@ Fear
 R20
 true
 Hourglass
+It's an emotion that can stop you from taking risks.;It can protect you but also hold you back.
 P6
 Anagram
 ipisrt
@@ -40,6 +45,7 @@ Spirit
 R17
 true
 Health_Potion
+Rearrange the letters to form a word that signifies essence or ghost.;It's something you feel but can't touch.
 P7
 Anagram
 sutreare
@@ -47,3 +53,4 @@ treasure
 R14
 true
 Reflective_Mirror
+Rearrange the letters to find something valuable and hidden.;Pirates seek it, and it's often buried.

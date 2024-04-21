@@ -104,27 +104,25 @@ public class Map
 	}
 
 	//this method parses data for the puzzle
-	public void readPuzzle(File puzzleFileName)
-	{
-		try {
-			fileReader = new Scanner(puzzleFileName);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		while(fileReader.hasNext()) {
-		String puzzleID = fileReader.nextLine();
-		String type  = fileReader.nextLine();
-		String question  = fileReader.nextLine();
-		String answer  = fileReader.nextLine(); //This is needed for the requirements
-		String location = fileReader.nextLine();
-		boolean rewardsPuzzle = Boolean.parseBoolean(fileReader.nextLine()); //one of the puzzle rewards is unlocking a room while the rest give items. true if the puzzle gives an item
-		String itemReward = fileReader.nextLine(); //This will be the name of the item that will be given.
-		
-		allPuzzles.add(new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward));
-		}
-		
+	public void readPuzzle(File puzzleFileName) {
+	    try (Scanner fileReader = new Scanner(puzzleFileName)) {
+	        while(fileReader.hasNext()) {
+	            String puzzleID = fileReader.nextLine();
+	            String type = fileReader.nextLine();
+	            String question = fileReader.nextLine();
+	            String answer = fileReader.nextLine();
+	            String location = fileReader.nextLine();
+	            boolean rewardsPuzzle = Boolean.parseBoolean(fileReader.nextLine());
+	            String itemReward = fileReader.nextLine();
+	            String hintsLine = fileReader.nextLine();  // Read the hints line
+	            String[] hints = hintsLine.split(";");  // Assuming hints are separated by semicolons
+
+	            Puzzle newPuzzle = new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward, hints);
+	            allPuzzles.add(newPuzzle);
+	        }
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	//this method parses data for the monsters
