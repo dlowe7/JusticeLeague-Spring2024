@@ -8,7 +8,8 @@ public class View {
         System.out.println();
     }
 
-    public void displayRoom(Room room) {
+    public void displayRoom(Room room) 
+{
         if (room != null) {
             System.out.println(room.getRoomName() + "\n" + room.getRoomDesc());
         } else {
