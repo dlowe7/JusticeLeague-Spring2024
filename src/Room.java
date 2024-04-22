@@ -14,14 +14,20 @@ public class Room implements Serializable
 	private HashMap<String, String> exits;  // HashMap to manage exits based on direction
 	ArrayList<Items> roomInventory;
 	private String currentRoomId;
+    private Puzzle puzzle;  // Puzzle for the room
+    private ArrayList<Monster> monsters; // List to hold monsters
+
+
 
 	//unfinished constructor
-	Room(String roomId, String roomName, String roomDesc, String northExit, String eastExit, String westExit, String southExit)
+	Room(String roomId, String roomName, String roomDesc, String northExit, String eastExit, String westExit, String southExit, ArrayList<Monster> monsters)
 	{
 		this.roomId = roomId;
 		this.roomName = roomName;
 		this.roomDesc = roomDesc;
 		this.roomInventory = new ArrayList<>();
+        this.monsters = monsters;  // Initialize the list of monsters
+
 
 		// Initialize exits HashMap and store exits
 		exits = new HashMap<>();
@@ -76,6 +82,14 @@ public class Room implements Serializable
 	public String getRoomDesc() {
 		return roomDesc;
 	}
+	
+	public void setPuzzle(Puzzle puzzle) {
+        this.puzzle = puzzle;
+    }
+	
+	public Puzzle getPuzzle() {
+        return this.puzzle;
+    }
 
 	public Items getItem() 
 		{
@@ -90,4 +104,12 @@ public class Room implements Serializable
 		{
 			return exits.get(direction); // Retrieve next room based on direction
 		}
+	
+	public ArrayList<Monster> getMonsters() {
+        return monsters;
+    }
+
+    public void setMonsters(ArrayList<Monster> monsters) {
+        this.monsters = monsters;
+    }
 }

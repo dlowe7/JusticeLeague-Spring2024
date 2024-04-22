@@ -19,29 +19,28 @@ public class Map
 	//This method parses data for the rooms.
 	//Didn't include the parse exits method as that should
 	//be part of the readRooms method
-	public void readRooms(File roomFileName)
-		{
-			Room room;
-			try {
-				fileReader = new Scanner(roomFileName);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			while(fileReader.hasNext()) {
-				String roomId = fileReader.nextLine();
-				String name = fileReader.nextLine();
-				String description = fileReader.nextLine();
-				String north = fileReader.nextLine();
-				String east = fileReader.nextLine();
-				String west = fileReader.nextLine();
-				String south = fileReader.nextLine();
-				room = new Room(roomId, name, description, north, east, west, south);
-				allRooms.add(room);
+	public void readRooms(File roomFileName) {
+	    Room room;
+	    try (Scanner fileReader = new Scanner(roomFileName)) {
+	        while (fileReader.hasNext()) {
+	            String roomId = fileReader.nextLine();
+	            String name = fileReader.nextLine();
+	            String description = fileReader.nextLine();
+	            String north = fileReader.nextLine();
+	            String east = fileReader.nextLine();
+	            String west = fileReader.nextLine();
+	            String south = fileReader.nextLine();
 
-			}
-			fileReader.close();
-		}
+	            // Find monsters for this room
+	            ArrayList<Monster> roomMonsters = findMonstersForRoom(roomId);
+
+	            room = new Room(roomId, name, description, north, east, west, south, roomMonsters);
+	            allRooms.add(room);
+	        }
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 
 	public Room getCurrentRoom(String roomId) {
@@ -53,6 +52,15 @@ public class Map
 		return null;
 	}
 
+	private ArrayList<Monster> findMonstersForRoom(String roomId) {
+	    ArrayList<Monster> foundMonsters = new ArrayList<>();
+	    for (Monster monster : allMonsters) {
+	        if (monster.getLocation().equals(roomId)) {
+	            foundMonsters.add(monster);
+	        }
+	    }
+	    return foundMonsters; // Returns an empty list if no monsters found
+	}
 
 	//this method parses data for the items
 	public void readItems(File itemFileName)
@@ -117,25 +125,46 @@ public class Map
 
 	//this method parses data for the puzzle
 	public void readPuzzle(File puzzleFileName) {
-		try (Scanner fileReader = new Scanner(puzzleFileName)) {
-			while(fileReader.hasNext()) {
-				String puzzleID = fileReader.nextLine();
-				String type = fileReader.nextLine();
-				String question = fileReader.nextLine();
-				String answer = fileReader.nextLine();
-				String location = fileReader.nextLine();
-				boolean rewardsPuzzle = Boolean.parseBoolean(fileReader.nextLine());
-				String itemReward = fileReader.nextLine();
-				String hintsLine = fileReader.nextLine();  // Read the hints line
-				String[] hints = hintsLine.split(";");  // Assuming hints are separated by semicolons
+        try (Scanner fileReader = new Scanner(puzzleFileName)) {
+            while(fileReader.hasNext()) {
+                String puzzleID = fileReader.nextLine();
+                String type = fileReader.nextLine();
+                String question = fileReader.nextLine();
+                String answer = fileReader.nextLine();
+                String location = fileReader.nextLine();
+                boolean rewardsPuzzle = Boolean.parseBoolean(fileReader.nextLine());
+                String itemReward = fileReader.nextLine();
+                String hintsLine = fileReader.nextLine();
+                String[] hints = hintsLine.split(";");
 
-				Puzzle newPuzzle = new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward, hints);
-				allPuzzles.add(newPuzzle);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+                Puzzle puzzle = new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward, hints);
+                allPuzzles.add(puzzle); // Add to the list of all puzzles
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // After loading puzzles, assign them to their respective rooms
+        assignPuzzlesToRooms();
+    }
+
+    private void assignPuzzlesToRooms() {
+        for (Puzzle puzzle : allPuzzles) {
+            Room room = getRoomById(puzzle.getLocation());
+            if (room != null) {
+                room.setPuzzle(puzzle);
+            }
+        }
+    }
+    
+    public Room getRoomById(String roomId) {
+        for (Room room : allRooms) {
+            if (room.getRoomId().equals(roomId)) {
+                return room;
+            }
+        }
+        return null;
+    }
 
 	//this method parses data for the monsters
 	public void readMonster(File monsterFileName)
@@ -214,16 +243,6 @@ public class Map
 	public Player getAllPlayerStats()
 		{
 			return allPlayerStats;
-		}
-
-
-
-	//Honestly I'm not entirely sure what the purpose
-	//for this will be, but we will cross that bridge
-	//when we get there.
-	public void connectElements()
-		{
-
 		}
 
 

@@ -11,7 +11,7 @@ public class View {
     public void displayRoom(Room room) 
 {
         if (room != null) {
-            System.out.println("You are at the:\n" + room.getRoomName() + "\n" + room.getRoomDesc());
+            System.out.println("\nYou are at the:\n" + room.getRoomName() + "\n" + room.getRoomDesc());
         } else {
             System.out.println("No room to display.");
         }

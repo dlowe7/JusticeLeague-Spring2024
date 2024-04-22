@@ -25,6 +25,7 @@ public class Puzzle {
 				this.rewardsPuzzle = rewardsPuzzle;
 				this.itemReward = itemReward;
 				this.hints = hints;
+				this.isSolved = false;
 	}
 
 	// Method to return puzzle question for examination
@@ -43,10 +44,10 @@ public class Puzzle {
 	    }
 	    if (attempts > 0) {
 	        attempts--;
-	        if (this.answer.equalsIgnoreCase(playerInput)) {
+	        if (this.answer.equalsIgnoreCase(playerInput.trim())) { // Trim input to avoid accidental space issues
 	            isSolved = true;
-	            handleReward();  // Handle rewards directly upon solving.
-	            return "Correct! The puzzle is solved.";
+	            handleReward();  // Ensure this method updates the game state appropriately
+	            return "Correct! The puzzle is solved. " + (rewardsPuzzle ? "You receive: " + itemReward : "");
 	        } else {
 	            return "Incorrect. Try again. Attempts left: " + attempts;
 	        }
@@ -55,18 +56,22 @@ public class Puzzle {
 	    }
 	}
 
+	public boolean isSolved() {
+        return isSolved;
+    }
+	
+	public int getAttempts() {
+        return attempts;
+    }
+
 	// Provide a hint, respects hint limits
-	public String giveHint() 
-		{
-			if (hintsGiven < 2 && hintsGiven < hints.length) 
-				{  // Ensure we do not exceed the hint limit
-					return hints[hintsGiven++];
-				} 
-			else 
-				{
-					return "No more hints available.";
-				}
-		}
+	public String giveHint() {
+	    if (hintsGiven < hints.length) {
+	        return hints[hintsGiven++];
+	    } else {
+	        return "No more hints available.";
+	    }
+	}
 
 	// Handles rewards and actions after solving the puzzle
 	private void handleReward() {
