@@ -1,60 +1,72 @@
 public class Puzzle {
+	
+	private Map gameMap;
 	private String puzzleID;
 	private String question;
 	private String answer;
 	private String type;
 	private String location;
 	private int attempts;
+    private int attemptsLeft;  // You should have a field that tracks the number of attempts left
 	private boolean isSolved;
 	private int hintsGiven;
 	private boolean rewardsPuzzle;
 	private String itemReward;
 	private String[] hints;  // Store multiple hints for dynamic provision.
+    private InventoryManager inventoryManager;
+
+
 
 	// Constructor
 	public Puzzle(String id, String type, String question, String answer, String location,
-			boolean rewardsPuzzle, String itemReward, String[] hints) {
+            boolean rewardsPuzzle, String itemReward, String[] hints, Map gameMap) {
 				this.puzzleID = id;
 				this.type = type;
 				this.question = question;
 				this.answer = answer;
 				this.location = location;
 				this.attempts = 4;
+		        this.attemptsLeft = this.attempts;  // Initialize attemptsLeft
 				this.isSolved = false;
 				this.hintsGiven = 0;
 				this.rewardsPuzzle = rewardsPuzzle;
 				this.itemReward = itemReward;
 				this.hints = hints;
 				this.isSolved = false;
+			    this.gameMap = gameMap; // Set the map reference
+
+
 	}
 
 	// Method to return puzzle question for examination
 	public String examine() {
 		if (!isSolved) {
-			return "Puzzle " + this.puzzleID + ": " + this.question + " (Type: " + this.type + ")";
+			return "Puzzle Type: " + this.type + "\n" + "Question: " + this.question;
 		} else {
 			return "Puzzle " + this.puzzleID + " has already been solved.";
 		}
 	}
 
 	// Attempt to solve the puzzle
-	public String solve(String playerInput) {
+	public String solve(String answer, Player player) {
 	    if (isSolved) {
 	        return "This puzzle has already been solved.";
 	    }
-	    if (attempts > 0) {
-	        attempts--;
-	        if (this.answer.equalsIgnoreCase(playerInput.trim())) { // Trim input to avoid accidental space issues
+	    if (attemptsLeft > 0) {
+	        attemptsLeft--;
+	        if (this.answer.equalsIgnoreCase(answer)) {
 	            isSolved = true;
-	            handleReward();  // Ensure this method updates the game state appropriately
-	            return "Correct! The puzzle is solved. " + (rewardsPuzzle ? "You receive: " + itemReward : "");
+	            String result = View.GREEN + "\nCorrect! The puzzle is solved." + View.RESET; // Store success message
+	            handleReward(player);  // Handle rewards after setting the puzzle to solved
+	            return result;  // Return the success message
 	        } else {
-	            return "Incorrect. Try again. Attempts left: " + attempts;
+	            return "Incorrect. Try again. Attempts left: " +View.PINK + attemptsLeft + View.RESET;
 	        }
 	    } else {
-	        return "No attempts left to solve this puzzle.";
+	        return "No more attempts left to solve this puzzle.";
 	    }
 	}
+
 
 	public boolean isSolved() {
         return isSolved;
@@ -63,23 +75,44 @@ public class Puzzle {
 	public int getAttempts() {
         return attempts;
     }
+	
+	public boolean hasMoreAttempts() {
+	    return attemptsLeft > 0;
+	}
 
+	public boolean canGiveHint() {
+        return hintsGiven < hints.length;
+    }
 	// Provide a hint, respects hint limits
 	public String giveHint() {
-	    if (hintsGiven < hints.length) {
-	        return hints[hintsGiven++];
-	    } else {
-	        return "No more hints available.";
-	    }
-	}
+        if (canGiveHint()) {
+            return hints[hintsGiven++];
+        } else {
+            return "No more hints available.";
+        }
+    }
 
 	// Handles rewards and actions after solving the puzzle
-	private void handleReward() {
-		if (rewardsPuzzle && !itemReward.isEmpty()) {
-			System.out.println("Player receives: " + itemReward);
-			// Further integration to provide item to player goes here.
-		}
-	}
+	private void handleReward(Player player) {
+        if (rewardsPuzzle && !itemReward.isEmpty()) {
+            Items rewardItem = gameMap.fetchItemByName(itemReward);
+            if (rewardItem != null) {
+                player.addItemToInventory(rewardItem);
+                System.out.println(View.GREEN + "\n\nPlayer receives: " + rewardItem.getName() + View.RESET);
+            } else {
+                System.out.println("Reward item '" + itemReward + "' not found.");
+            }
+        }
+    }
+	
+	public void addItemToInventory(String itemName) {
+        Items newItem = new Items(itemName);  // Assuming you have a constructor like this
+        inventoryManager.addItem(newItem);  // Assuming InventoryManager handles item objects
+    }
+
+	public InventoryManager getInventoryManager() {
+        return this.inventoryManager;
+    }
 
 	public String getPuzzleID() 
 		{

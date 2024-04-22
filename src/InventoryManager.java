@@ -1,10 +1,12 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryManager 
+public class InventoryManager implements Serializable
 
 {
-	private List<Items> inventory;
+    private static final long serialVersionUID = 1L;
+	private List<Items> inventory = new ArrayList<>();
 
 
 	public InventoryManager() 
@@ -12,19 +14,22 @@ public class InventoryManager
 			this.inventory = new ArrayList<>();
 		}
 
-	public void addItem(Items item) {
-        inventory.add(item);
-        System.out.println(item.getName() + " added to inventory.");
+	
+	public List<Items> getInventory() {
+        return inventory;
     }
-
-	public void removeItem(Items item) {
-        if (inventory.contains(item)) {
-            inventory.remove(item);
-            System.out.println(item.getName() + " removed from inventory.");
-        } else {
-            System.out.println("Item not found in inventory.");
+	
+	
+	public void addItem(Items item) {
+        if (item != null) {
+            inventory.add(item);
         }
     }
+
+	public boolean removeItem(Items item) {
+        return inventory.remove(item);
+    }
+
 
 	public Items getItemByName(String name) {
         for (Items item : inventory) {
@@ -82,12 +87,4 @@ public class InventoryManager
 			System.out.println(item.getName() + " used.");
 		}
 
-	/**
-	 * Returns the current inventory.
-	 * @return List of items in the inventory.
-	 */
-	public List<Items> getInventory() 
-		{
-			return new ArrayList<>(inventory); // Return a copy of the inventory list to prevent external modifications
-		}
 }

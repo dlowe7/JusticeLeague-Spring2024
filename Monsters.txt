@@ -10,7 +10,7 @@ M2
 Hisser
 A reptile-like entity that slithers around mischievously
 The monster bites you for
-R
+R12
 65
 65
 20
@@ -18,7 +18,7 @@ M3
 Dusklord
 A lurker who hides in the darkness. Be wary in the absence of light
 the monster's shadow strangles you for
-R
+R3
 60
 60
 15
@@ -26,7 +26,7 @@ M4
 Terra Deleo
 Another dangerous individual who is capable of shockwave attacks and other vibrational attacks
 The monster createss a shockwave dealing
-R
+R8
 110
 110
 40
@@ -34,7 +34,7 @@ M5
 Slash
 The swordsman who has been rumored to have taken down the Rogue Allegiance single-handedly. Other warriors who dared to challenge him were never heard from again.
 The menace swings his blade at you dealing
-R
+R5
 185
 185
 70
@@ -42,7 +42,7 @@ M6
 Crook
 This individual is on the lookout for something SHINY to take!
 The monster flails his arms at you, dealing 
-R
+R6
 40
 40
 10
@@ -50,7 +50,7 @@ M7
 Pantera
 This cat-like being lurks in the environment and strikes down on its prey. Beware!
 The monster Pounces on you for
-R
+R2
 125
 125
 60

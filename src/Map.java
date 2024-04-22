@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Map
+
 {
 	//Field variables
 	ArrayList<Room> allRooms = new ArrayList<Room>();
@@ -118,10 +119,20 @@ public class Map
 						}
 				}
 
-
-
-
 		}
+
+
+	public Items fetchItemByName(String itemName) {
+	    // Here you might check a list of all items predefined in the game
+	    for (Items item : allItems) {
+	        if (item.getName().equalsIgnoreCase(itemName)) {
+	            return item;
+	        }
+	    }
+	    // Optionally create a new Items object if not found
+	    return new Items(itemName, "Generated Description", itemName, "No Location", false, false, false);
+	}
+
 
 	//this method parses data for the puzzle
 	public void readPuzzle(File puzzleFileName) {
@@ -137,7 +148,7 @@ public class Map
                 String hintsLine = fileReader.nextLine();
                 String[] hints = hintsLine.split(";");
 
-                Puzzle puzzle = new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward, hints);
+                Puzzle puzzle = new Puzzle(puzzleID, type, question, answer, location, rewardsPuzzle, itemReward, hints, this);
                 allPuzzles.add(puzzle); // Add to the list of all puzzles
             }
         } catch (FileNotFoundException e) {
@@ -167,33 +178,42 @@ public class Map
     }
 
 	//this method parses data for the monsters
-	public void readMonster(File monsterFileName)
-		{
-			try {
-				fileReader = new Scanner(monsterFileName);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			while(fileReader.hasNext()) {
-				String ID, name, description, abilities, location;
-				int exp, hp, attack;
-				ID = fileReader.nextLine();
-				name = fileReader.nextLine();
-				description = fileReader.nextLine();
-				abilities = fileReader.nextLine();
-				location = fileReader.nextLine();
-				exp = fileReader.nextInt();
-				hp = fileReader.nextInt();
-				attack = fileReader.nextInt();
-				if(fileReader.hasNext()) 
-					{	
-						fileReader.next();
-					}
+    public void readMonster(File monsterFileName) {
+        try (Scanner fileReader = new Scanner(monsterFileName)) {
+            while (fileReader.hasNextLine()) {
+                String ID = fileReader.nextLine();
+                String name = fileReader.nextLine();
+                String description = fileReader.nextLine();
+                String abilities = fileReader.nextLine();
+                String location = fileReader.nextLine();
+                int exp = Integer.parseInt(fileReader.nextLine());
+                int hp = Integer.parseInt(fileReader.nextLine());
+                int attack = Integer.parseInt(fileReader.nextLine());
 
-				allMonsters.add(new Monster(ID, name, description, abilities, location, exp, hp, attack));
-			}
-		}
+                Monster monster = new Monster(ID, name, description, abilities, location, exp, hp, attack);
+                Room room = findRoomById(location);
+                if (room != null) {
+                    room.addMonster(monster);
+                }
+                allMonsters.add(monster);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Room findRoomById(String roomId) {
+        for (Room room : allRooms) {
+            if (room.getRoomId().equals(roomId)) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+
+
+   
 
 	//This is to parse player information
 	public Player readPlayerStats(File playerFile) throws FileNotFoundException {

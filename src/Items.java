@@ -13,16 +13,24 @@ public class Items implements Serializable
 		private boolean isUsable;
 
 		// Constructor
-		public Items(String name, String description, String itemID, String location, boolean isConsumable, boolean isEquipable, boolean isUsable) 
-			{
-				this.name = name;
-				this.description = description;
-				this.itemID = itemID;
-				this.location = location;
-				this.isConsumable = isConsumable;
-				this.isEquipable = isEquipable;
-				this.isUsable = isUsable;
-			}
+		public Items(String name, String description, String itemID, String location, boolean isConsumable, boolean isEquipable, boolean isUsable) {
+	        this.name = name;
+	        this.description = description;
+	        this.itemID = itemID;
+	        this.location = location;
+	        this.isConsumable = isConsumable;
+	        this.isEquipable = isEquipable;
+	        this.isUsable = isUsable;
+	    }
+
+	    // Simpler constructor for quick item creation
+	    public Items(String name) {
+	        this(name, "Default description", generateUniqueItemID(), "Inventory", false, false, true);
+	    }
+
+	    private static String generateUniqueItemID() {
+	        return "ITEM" + System.currentTimeMillis(); // Simple unique ID generation
+	    }
 
 		// Method to determine if the item is usable
 		public boolean isUsable() 
@@ -56,25 +64,25 @@ public class Items implements Serializable
 		// Getter for item name
 		public String getName() 
 			{
-				return this.name;
+				return name;
 			}
 
 		// Getter for item description
 		public String getDescription() 
 			{
-				return this.description;
+				return description;
 			}
 
 		// Getter for item ID
 		public String getItemID() 
 			{
-				return this.itemID;
+				return itemID;
 			}
 
 		// Getter for item location
 		public String getLocation() 
 			{
-				return this.location;
+				return location;
 			}
 		
 		public void displayItemDetails(Items item) {

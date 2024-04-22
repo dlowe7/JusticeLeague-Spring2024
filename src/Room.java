@@ -100,16 +100,28 @@ public class Room implements Serializable
 			return null;
 		}
 
-	public String getNextRoomId(String direction) 
-		{
-			return exits.get(direction); // Retrieve next room based on direction
-		}
-	
-	public ArrayList<Monster> getMonsters() {
+	public void addMonster(Monster monster) {
+        if (!monsters.contains(monster)) {
+            monsters.add(monster);
+        } else {
+            System.out.println("Monster " + monster.getName() + " already exists in room " + roomId);
+        }
+    }
+
+    public ArrayList<Monster> getMonsters() {
         return monsters;
     }
 
-    public void setMonsters(ArrayList<Monster> monsters) {
-        this.monsters = monsters;
+    public String getNextRoomId(String direction) {
+        return exits.get(direction);
     }
+
+    public void clearMonsters() {
+        monsters.clear();
+    }
+    
+
+    
+    
+    
 }

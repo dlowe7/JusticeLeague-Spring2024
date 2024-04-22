@@ -63,9 +63,11 @@ public class Monster
 		}
 
 		
-		public void takeDamage(int damage) 
-			{
-		    hp -= damage;
+		public void takeDamage(int damage) {
+		    this.hp -= damage; // Decrease HP by the damage amount
+		    if (this.hp < 0) {
+		        this.hp = 0; // Ensure HP doesn't go below zero
+		    }
 		}
 
 		public boolean isDefeated() 
@@ -73,6 +75,7 @@ public class Monster
 		    return hp <= 0;
 		}
 
+		
 
 		public int calculateRewards() 
 			{

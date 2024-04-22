@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +19,7 @@ public class Player implements Serializable
 	private int attackPower;
 	private static final int EXP_REQUIRED = 300;
 	private Equipment equippedWeapon;  // Declare equippedWeapon as an instance of Equipment.
+    private List<Items> inventory;  // Direct inventory list
 	private InventoryManager inventoryManager;
 	private CombatManager combatManager;
 
@@ -34,6 +36,7 @@ public class Player implements Serializable
 			this.inventoryManager = new InventoryManager();
 			this.equippedWeapon = null; // Initially, no equipment is equipped.
 			this.combatManager = new CombatManager(this);
+	        this.inventory = new ArrayList<>();  // Initialize the inventory
 
 		}
 
@@ -95,43 +98,43 @@ public class Player implements Serializable
 
 
 	public void accessInventory() {
-		System.out.println("Accessing inventory:");
-		List<Items> items = inventoryManager.getInventory();
-		if (items.isEmpty()) {
-			System.out.println("Your inventory is empty.");
-		} else {
-			for (Items item : items) {
-				System.out.println("- " + item.getName());
-			}
-		}
+	    System.out.println("Inventory contains:");
+	    if (this.inventory.isEmpty()) {
+	        System.out.println("Your inventory is empty.");
+	    } else {
+	        for (Items item : this.inventory) {
+	            System.out.println("- " + item.getName());
+	        }
+	    }
 	}
 
-	public void addItem(Items item) 
-		{
-			inventoryManager.addItem(item);
-			System.out.println(item.getName() + " has been added to your inventory.");
-		}
+	public void addItemToInventory(Items item) {
+	    if (item != null) {
+	        this.inventory.add(item);  // Directly add to the inventory list
+	        System.out.println(item.getName() + " added to inventory.");
+	    }
+	}
 
 	public void dropItem(String itemName) {
-		Items item = inventoryManager.getItemByName(itemName);
-		if (item != null) {
-			inventoryManager.removeItem(item);
-			System.out.println(itemName + " has been dropped from your inventory.");
-		} else {
-			System.out.println("No item named " + itemName + " found in inventory.");
-		}
+	    Items item = inventoryManager.getItemByName(itemName);
+	    if (item != null) {
+	        inventoryManager.removeItem(item);
+	        System.out.println(itemName + " has been dropped from your inventory.");
+	    } else {
+	        System.out.println("No item named " + itemName + " found in inventory.");
+	    }
 	}
 
 
 	public void useItem(String itemName) {
-		Items item = inventoryManager.getItemByName(itemName);
-		if (item != null) {
-			inventoryManager.useItem(item, this);  // Assumes useItem method handles effect application
-			System.out.println("Using " + itemName);
-		} else {
-			System.out.println("No item named " + itemName + " found in inventory.");
-		}
-	}
+        for (Items item : new ArrayList<>(this.inventory)) {  // Copy to avoid concurrent modification
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                System.out.println("Using " + item.getName());
+                this.inventory.remove(item);  // Example: Remove after use
+                break;
+            }
+        }
+    }
 
 
 	public void equipWeapon(Equipment weapon) {
