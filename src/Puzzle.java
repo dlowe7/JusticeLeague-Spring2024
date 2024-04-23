@@ -56,11 +56,11 @@ public class Puzzle {
 	        attemptsLeft--;
 	        if (this.answer.equalsIgnoreCase(answer)) {
 	            isSolved = true;
-	            String result = View.GREEN + "\nCorrect! The puzzle is solved." + View.RESET; // Store success message
-	            handleReward(player);  // Handle rewards after setting the puzzle to solved
-	            return result;  // Return the success message
+	            String solveMessage = "Correct! The puzzle is solved."; // Store success message first
+	            handleReward(player); // Then handle the reward
+	            return solveMessage; // Return the solve message
 	        } else {
-	            return "Incorrect. Try again. Attempts left: " +View.PINK + attemptsLeft + View.RESET;
+	            return "Incorrect. Try again. Attempts left: " + attemptsLeft;
 	        }
 	    } else {
 	        return "No more attempts left to solve this puzzle.";

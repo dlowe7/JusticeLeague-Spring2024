@@ -98,7 +98,7 @@ public class Player implements Serializable
 
 
 	public void accessInventory() {
-	    System.out.println("Inventory contains:");
+	    System.out.println("\n\nInventory contains:");
 	    if (this.inventory.isEmpty()) {
 	        System.out.println("Your inventory is empty.");
 	    } else {
@@ -111,7 +111,6 @@ public class Player implements Serializable
 	public void addItemToInventory(Items item) {
 	    if (item != null) {
 	        this.inventory.add(item);  // Directly add to the inventory list
-	        System.out.println(item.getName() + " added to inventory.");
 	    }
 	}
 

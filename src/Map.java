@@ -122,7 +122,7 @@ public class Map
 		}
 
 
-	public Items fetchItemByName(String itemName) {
+	 Items fetchItemByName(String itemName) {
 	    // Here you might check a list of all items predefined in the game
 	    for (Items item : allItems) {
 	        if (item.getName().equalsIgnoreCase(itemName)) {
